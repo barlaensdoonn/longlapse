@@ -1,83 +1,100 @@
+
 #!/usr/bin/python3
 
 # timelapse based on sunrise/sunset
 # 11/13/16
 
 import picamera
+import ephem
 import time
 import datetime
+import os
+import subprocess
 
 
-pixels = (2592, 1944)
-frameRate = 1
-frames = 1
+class Camera(object):
 
-'''
-for getting exif out of image:
+    base_pi_path = '/home/pi/longlapse'
+    base_remote_path = 'kestrel@KESTREL.local:/Users/kestrel/Desktop/picamera/first_run'
 
-from PIL import Image
-from PIL.ExifTags import TAGS
+    def __init__(self):
+        self.pixels = (2592, 1944)
+        self.framerate = 1
+        self.led = False
+        self.vflip = True
+        self.hflip = True
+        self.meter_mode = 'backlit'
+        self.iso = 100
+        # self.awb_mode = 'off'
+        # self.exposure_mode = 'off'  # exposure_mode off disables picam.analog_gain & picam.digital_gain, which are not directly settable
+        self.counter = 1
 
-with Image.open("001.jpg") as img:
-exif = {
-    TAGS[k]: v for k, v in img._getexif().items() if k in TAGS
-}
-'''
+    def take_pic(self):
+        with picamera.PiCamera(resolution=self.pixels, framerate=self.framerate) as picam:
+            picam.iso = self.iso
+            picam.led = self.led
+            picam.vflip = self.vflip
+            picam.hflip = self.hflip
+            picam.meter_mode = self.meter_mode
+            time.sleep(5)
 
+            now = datetime.datetime.now().time()
+            picam.capture('/home/pi/picameraTest/lapse/01/{}_frame{:03d}.jpg'.format(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M"), self.counter))
+            print("captured frame {} at {}\n".format(self.counter, now))
 
-def setParams():
-    with picamera.PiCamera(resolution=pixels, framerate=frameRate) as camera:
-        camera.led = False
-        camera.vflip = True
-        camera.meter_mode = 'matrix'
+            self.counter+=1
 
-        time.sleep(5)
+    def wait(self):
+        next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=1)).replace(second=0, microsecond=0)
+        delay = (next_minute - datetime.datetime.now()).seconds
+        time.sleep(delay)
 
-        print("initial analog gain = ", camera.analog_gain)
-        print("initial digital gain = ", camera.digital_gain)
-        print("inital exposure_speed = ", camera.exposure_speed)
-        print("initial awbg = ", camera.awb_gains)
-        print()
+    def calculate_frames(self, awake_interval):
+        self.total_frames_today = int(abs(awake_interval.total_seconds()/60))
 
-        exposureValues = {"shutterSpeed": camera.exposure_speed, "awbg": camera.awb_gains}
-        return exposureValues
+    def sleep_til_sunrise(self, sleep_interval):
+        time.sleep(sleep_interval)
 
+    def make_todays_dir(self, today):
+        os.mkdir(os.path.join(base_pi_path, today))
 
-def takePic(counter, shutterSpeed=0, awbg=0):
-    with picamera.PiCamera(resolution=pixels, framerate=frameRate) as camera:
-        camera.led = False
-        camera.vflip = True
-        camera.hflip = True
-        camera.awb_mode = 'off'
-        camera.exposure_mode = 'off'
-        camera.iso = 100
-        print("current analog gain = ", camera.analog_gain)
-        print("current digital gain = ", camera.digital_gain)
-        camera.shutter_speed = shutterSpeed
-        # camera.shutter_speed = 3000
-        # print("testing shutter speed {} instead".format(camera.shutter_speed))
-        print("current shutter_speed = ", camera.shutter_speed)
-        camera.awb_gains = awbg
-        print("current awbg = ", awbg)
-
-        currentTime = datetime.datetime.now()
-        now = currentTime.time()
-        print("capturing frame {} at {}".format(counter, now))
-        camera.capture('/home/pi/picameraTest/lapse/01/{0:03d}.jpg'.format(counter))
+    def copy_todays_dir(self, today):
+        copy_from = os.path.join(base_pi_path, today)
+        copy_to = os.path.join(base_remote_path, today)
+        subprocess.call(['scp', '-rp', copy_from, copy_to], stdout=subprocess.DEVNULL)
 
 
-def wait():
-    next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=1)).replace(second=0, microsecond=0)
-    delay = (next_minute - datetime.datetime.now()).seconds
-    time.sleep(delay)
+class Light(object):
+
+    def __init__(self):
+        self.seattle = ephem.Observer()
+        self.seattle.pressure = 0
+        self.seattle.horizon = '-6'
+        self.seattle.lon = '-122:21:19:5'
+        self.seattle.lat = '47:44:03:9'
+        self.seattle.elevation = 145
+
+    def get_times(self):
+        # self.prev_rise = ephem.localtime(seattle.previous_rising(ephem.Sun()))
+        self.next_rise = ephem.localtime(self.seattle.next_rising(ephem.Sun()))
+        self.next_set = ephem.localtime(self.seattle.next_setting(ephem.Sun()))
+        self.sleep_interval = self.next_rise - datetime.datetime.now()
+        self.awake_interval = self.next_rise - self.next_set
+        self.today = light.next_rise.strftime("%Y-%m-%d")
 
 
 if __name__ == '__main__':
-    counter = 1
-    params = setParams()
-    wait()
+    camera = Camera()
+    light = Light()
 
-    for i in range(frames):
-        takePic(counter, **params)
-        counter += 1
-        wait()
+    light.get_times()
+    camera.make_todays_dir(light.today)
+    camera.calculate_frames(light.awake_interval)
+    camera.sleep_til_sunrise(light.sleep_interval)
+
+    for frame in range(camera.total_frames_today):
+        camera.take_pic()
+        camera.wait()
+
+    # TODO: put this in try:except with limited retries
+    camera.copy_todays_dir(light.today)
