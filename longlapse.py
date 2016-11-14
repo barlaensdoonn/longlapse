@@ -14,10 +14,9 @@ import subprocess
 
 class Camera(object):
 
-    base_pi_path = '/home/pi/longlapse'
-    base_remote_path = 'kestrel@KESTREL.local:/Users/kestrel/Desktop/picamera/first_run'
-
     def __init__(self):
+        self.base_pi_path = '/home/pi/longlapse'
+        self.base_remote_path = 'kestrel@KESTREL.local:/Users/kestrel/Desktop/picamera/first_run'
         self.pixels = (2592, 1944)
         self.framerate = 1
         self.led = False
@@ -29,7 +28,7 @@ class Camera(object):
         # self.exposure_mode = 'off'  # exposure_mode off disables picam.analog_gain & picam.digital_gain, which are not directly settable
         self.counter = 1
 
-    def take_pic(self):
+    def take_pic(self, today):
         with picamera.PiCamera(resolution=self.pixels, framerate=self.framerate) as picam:
             picam.iso = self.iso
             picam.led = self.led
@@ -38,11 +37,12 @@ class Camera(object):
             picam.meter_mode = self.meter_mode
             time.sleep(5)
 
-            now = datetime.datetime.now().time()
-            picam.capture('/home/pi/picameraTest/lapse/01/{}_frame{:03d}.jpg'.format(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M"), self.counter))
-            print("captured frame {} at {}\n".format(self.counter, now))
+            now = datetime.datetime.now()
+            picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
+            # picam.capture('/home/pi/picameraTest/lapse/01/{}_frame{:03d}.jpg'.format(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M"), self.counter))
+            # print("captured frame {} at {}\n".format(self.counter, now))
 
-            self.counter+=1
+            self.counter += 1
 
     def wait(self):
         next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=1)).replace(second=0, microsecond=0)
@@ -56,11 +56,11 @@ class Camera(object):
         time.sleep(sleep_interval)
 
     def make_todays_dir(self, today):
-        os.mkdir(os.path.join(base_pi_path, today))
+        os.mkdir(os.path.join(self.base_pi_path, today))
 
     def copy_todays_dir(self, today):
-        copy_from = os.path.join(base_pi_path, today)
-        copy_to = os.path.join(base_remote_path, today)
+        copy_from = os.path.join(self.base_pi_path, today)
+        copy_to = os.path.join(self.base_remote_path, today)
         subprocess.call(['scp', '-rp', copy_from, copy_to], stdout=subprocess.DEVNULL)
 
 
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     camera.sleep_til_sunrise(light.sleep_interval)
 
     for frame in range(camera.total_frames_today):
-        camera.take_pic()
+        camera.take_pic(light.today)
         camera.wait()
 
     # TODO: put this in try:except with limited retries
