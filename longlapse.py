@@ -10,6 +10,8 @@ import time
 import datetime
 import os
 import subprocess
+import logging
+import traceback
 
 
 class Camera(object):
@@ -46,17 +48,19 @@ class Camera(object):
 
     def wait(self):
         next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=1)).replace(second=0, microsecond=0)
-        delay = (next_minute - datetime.datetime.now()).seconds
+        delay = (next_minute - datetime.datetime.now()).total_seconds()
         time.sleep(delay)
 
     def calculate_frames(self, awake_interval):
-        self.total_frames_today = int(abs(awake_interval.total_seconds()/60))
+        self.total_frames_today = int(abs(awake_interval/60))
 
     def sleep_til_sunrise(self, sleep_interval):
         time.sleep(sleep_interval)
 
     def make_todays_dir(self, today):
-        os.mkdir(os.path.join(self.base_pi_path, today))
+        self.todays_dir = os.path.join(self.base_pi_path, today)
+        if not os.path.isdir(os.path.join(self.base_pi_path, today)):
+            os.mkdir(self.todays_dir)
 
     def copy_todays_dir(self, today):
         copy_from = os.path.join(self.base_pi_path, today)
@@ -75,26 +79,49 @@ class Light(object):
         self.seattle.elevation = 145
 
     def get_times(self):
-        # self.prev_rise = ephem.localtime(seattle.previous_rising(ephem.Sun()))
+        # self.prev_rise = ephem.localtime(self.seattle.previous_rising(ephem.Sun()))
         self.next_rise = ephem.localtime(self.seattle.next_rising(ephem.Sun()))
         self.next_set = ephem.localtime(self.seattle.next_setting(ephem.Sun()))
-        self.sleep_interval = self.next_rise - datetime.datetime.now()
-        self.awake_interval = self.next_rise - self.next_set
+        self.sleep_interval = (self.next_rise - datetime.datetime.now()).total_seconds()
+        self.awake_interval = (self.next_rise - self.next_set).total_seconds()
         self.today = light.next_rise.strftime("%Y-%m-%d")
 
 
 if __name__ == '__main__':
+    logging.basicConfig(filename='/home/pi/longlapse/longlapse.log', format='%(asctime)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S', level=logging.INFO)
+
     camera = Camera()
     light = Light()
 
-    light.get_times()
-    camera.make_todays_dir(light.today)
-    camera.calculate_frames(light.awake_interval)
-    camera.sleep_til_sunrise(light.sleep_interval)
+    try:
+        light.get_times()
+        logging.info('----------------------- {} -----------------------'.format(light.today))
+        logging.debug('light.next_rise = {}'.format(light.next_rise))
+        logging.debug('light.next_set = {}'.format(light.next_set))
+        logging.debug('light.sleep_interval = {}'.format(light.sleep_interval))
+        logging.debug('light.awake_interval = {}'.format(light.awake_interval))
+        logging.debug('light.today = {}'.format(light.today))
 
-    for frame in range(camera.total_frames_today):
-        camera.take_pic(light.today)
-        camera.wait()
+        camera.make_todays_dir(light.today)
+        logging.info("made today's directory at {}".format(camera.todays_dir))
 
-    # TODO: put this in try:except with limited retries
-    camera.copy_todays_dir(light.today)
+        camera.calculate_frames(light.awake_interval)
+        logging.info('{} frames will be shot today over {} hours'.format(camera.total_frames_today, abs(light.awake_interval)/3600))
+
+        logging.info('sleeping til sunrise {} hours from now'.format(light.sleep_interval/3600))
+        camera.sleep_til_sunrise(light.sleep_interval)
+
+        logging.info("I'm awake!")
+        for frame in range(camera.total_frames_today):
+            camera.take_pic(light.today)
+            camera.wait()
+
+        # TODO: put this in try:except with limited retries
+        logging.info("copying today's directory to kestrel")
+        camera.copy_todays_dir(light.today)
+        logging.info('finished copying\n')
+
+        # TODO: delete directory after copying
+
+    except Exception as e:
+        logging.error(traceback.format_exc())
