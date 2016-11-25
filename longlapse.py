@@ -9,6 +9,7 @@ import ephem
 import time
 import datetime
 import os
+import shutil
 import subprocess
 import logging
 import traceback
@@ -52,20 +53,25 @@ class Camera(object):
         time.sleep(delay)
 
     def calculate_frames(self, awake_interval):
-        self.total_frames_today = int(abs(awake_interval/60))
+        self.total_frames_today = int(abs(awake_interval/600))
 
     def sleep_til_sunrise(self, sleep_interval):
         time.sleep(sleep_interval)
 
     def make_todays_dir(self, today):
         self.todays_dir = os.path.join(self.base_pi_path, today)
-        if not os.path.isdir(os.path.join(self.base_pi_path, today)):
+        if not os.path.isdir(self.todays_dir):
             os.mkdir(self.todays_dir)
 
     def copy_todays_dir(self, today):
         copy_from = os.path.join(self.base_pi_path, today)
         copy_to = os.path.join(self.base_remote_path, today)
         subprocess.call(['scp', '-rp', copy_from, copy_to], stdout=subprocess.DEVNULL)
+        self.copied = True
+
+    def delete_todays_dir(self):
+        if os.path.isdir(self.todays_dir) and self.copied:
+            shutil.rmtree(self.todays_dir)
 
 
 class Light(object):
@@ -119,9 +125,12 @@ if __name__ == '__main__':
         # TODO: put this in try:except with limited retries
         logging.info("copying today's directory to kestrel")
         camera.copy_todays_dir(light.today)
-        logging.info('finished copying\n')
+        logging.info('finished copying')
 
-        # TODO: delete directory after copying
+        camera.delete_todays_dir()
+        logging.info("deleted today's directory\n")
+
+        # TODO: push log file up to git nightly?
 
     except Exception as e:
         logging.error(traceback.format_exc())
