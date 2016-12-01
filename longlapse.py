@@ -19,7 +19,7 @@ class Camera(object):
 
     def __init__(self):
         self.base_pi_path = '/home/pi/longlapse'
-        self.base_remote_path = 'kestrel@KESTREL.local:/Users/kestrel/Desktop/picamera/first_run'
+        self.base_remote_path = 'kestrel@KESTREL.local:/Users/kestrel/'
         self.pixels = (2592, 1944)
         self.framerate = 1
         self.led = False
@@ -41,14 +41,13 @@ class Camera(object):
             time.sleep(5)
 
             now = datetime.datetime.now()
+            logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
             picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
-            # picam.capture('/home/pi/picameraTest/lapse/01/{}_frame{:03d}.jpg'.format(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M"), self.counter))
-            # print("captured frame {} at {}\n".format(self.counter, now))
 
             self.counter += 1
 
     def wait(self):
-        next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=1)).replace(second=0, microsecond=0)
+        next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=10)).replace(second=0, microsecond=0)
         delay = (next_minute - datetime.datetime.now()).total_seconds()
         time.sleep(delay)
 
@@ -64,10 +63,17 @@ class Camera(object):
             os.mkdir(self.todays_dir)
 
     def copy_todays_dir(self, today):
+        file_path = 'Desktop/picamera/first_run'
         copy_from = os.path.join(self.base_pi_path, today)
-        copy_to = os.path.join(self.base_remote_path, today)
+        copy_to = os.path.join(self.base_remote_path, file_path, today)
         subprocess.call(['scp', '-rp', copy_from, copy_to], stdout=subprocess.DEVNULL)
         self.copied = True
+
+    def copy_log(self):
+        dropbox_path = 'dropbox_me/Dropbox/longlapse'
+        copy_log_from = os.path.join(self.base_pi_path, 'longlapse.log')
+        copy_log_to = os.path.join(self.base_remote_path, dropbox_path)
+        subprocess.call(['scp', '-rp', copy_log_from, copy_log_to], stdout=subprocess.DEVNULL)
 
     def delete_todays_dir(self):
         if os.path.isdir(self.todays_dir) and self.copied:
@@ -94,7 +100,7 @@ class Light(object):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename='/home/pi/longlapse/longlapse.log', format='%(asctime)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S', level=logging.INFO)
+    logging.basicConfig(filename='/home/pi/longlapse/longlapse.log', format='%(asctime)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S', level=logging.DEBUG)
 
     camera = Camera()
     light = Light()
@@ -118,6 +124,7 @@ if __name__ == '__main__':
         camera.sleep_til_sunrise(light.sleep_interval)
 
         logging.info("I'm awake!")
+        # TODO: put below into camera.take_pic() and keep context manager open over whole range to see if we can set awb_gains for whole day
         for frame in range(camera.total_frames_today):
             camera.take_pic(light.today)
             camera.wait()
@@ -125,12 +132,13 @@ if __name__ == '__main__':
         # TODO: put this in try:except with limited retries
         logging.info("copying today's directory to kestrel")
         camera.copy_todays_dir(light.today)
-        logging.info('finished copying')
+        logging.info("finished copying today's directory")
 
         camera.delete_todays_dir()
         logging.info("deleted today's directory\n")
 
-        # TODO: push log file up to git nightly?
+        camera.copy_log()
+        logging.info("copied today's log to DropBox")
 
     except Exception as e:
         logging.error(traceback.format_exc())
