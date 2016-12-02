@@ -3,6 +3,7 @@
 
 # timelapse based on sunrise/sunset
 # 11/13/16
+# updated 12/1/16
 
 import picamera
 import ephem
@@ -13,6 +14,7 @@ import shutil
 import subprocess
 import logging
 import traceback
+from fractions import Fraction
 
 
 class Camera(object):
@@ -27,9 +29,10 @@ class Camera(object):
         self.hflip = True
         self.meter_mode = 'backlit'
         self.iso = 100
-        # self.awb_mode = 'off'
+        self.awb_mode = 'off'
         # self.exposure_mode = 'off'  # exposure_mode off disables picam.analog_gain & picam.digital_gain, which are not directly settable
         self.counter = 1
+        self.awb_gains = (Fraction(447, 256), Fraction(255, 256))
 
     def take_pic(self, today):
         with picamera.PiCamera(resolution=self.pixels, framerate=self.framerate) as picam:
@@ -38,13 +41,19 @@ class Camera(object):
             picam.vflip = self.vflip
             picam.hflip = self.hflip
             picam.meter_mode = self.meter_mode
+
             time.sleep(5)
 
-            now = datetime.datetime.now()
-            logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
-            picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
+            picam.awb_mode = self.awb_mode
+            picam.awb_gains = self.awb_gains
 
-            self.counter += 1
+            for frame in range(self.total_frames_today):
+                now = datetime.datetime.now()
+                picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
+                logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
+
+                self.counter += 1
+                self.wait()
 
     def wait(self):
         next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=10)).replace(second=0, microsecond=0)
@@ -124,10 +133,8 @@ if __name__ == '__main__':
         camera.sleep_til_sunrise(light.sleep_interval)
 
         logging.info("I'm awake!")
-        # TODO: put below into camera.take_pic() and keep context manager open over whole range to see if we can set awb_gains for whole day
-        for frame in range(camera.total_frames_today):
-            camera.take_pic(light.today)
-            camera.wait()
+
+        camera.take_pic(light.today)
 
         # TODO: put this in try:except with limited retries
         logging.info("copying today's directory to kestrel")
