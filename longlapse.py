@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 
 # timelapse based on sunrise/sunset
@@ -15,13 +14,16 @@ import subprocess
 import logging
 import traceback
 from fractions import Fraction
+from longpaths import base_remote_path
 
+log_locate = '/home/pi/longlapse/longlapse.log'
 
 class Camera(object):
 
     def __init__(self):
         self.base_pi_path = '/home/pi/longlapse'
-        self.base_remote_path = 'kestrel@KESTREL.local:/Users/kestrel/'
+        self.base_remote_path = base_remote_path
+        self.copied = False
         self.pixels = (2592, 1944)
         self.framerate = 1
         self.led = False
@@ -30,9 +32,9 @@ class Camera(object):
         self.meter_mode = 'backlit'
         self.iso = 100
         self.awb_mode = 'off'
+        self.awb_gains = (Fraction(447, 256), Fraction(255, 256))
         # self.exposure_mode = 'off'  # exposure_mode off disables picam.analog_gain & picam.digital_gain, which are not directly settable
         self.counter = 1
-        self.awb_gains = (Fraction(447, 256), Fraction(255, 256))
 
     def take_pic(self, today):
         with picamera.PiCamera(resolution=self.pixels, framerate=self.framerate) as picam:
@@ -61,7 +63,7 @@ class Camera(object):
         time.sleep(delay)
 
     def calculate_frames(self, awake_interval):
-        self.total_frames_today = int(abs(awake_interval/600))
+        self.total_frames_today = int(abs(awake_interval / 600))
 
     def sleep_til_sunrise(self, sleep_interval):
         time.sleep(sleep_interval)
@@ -109,7 +111,7 @@ class Light(object):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename='/home/pi/longlapse/longlapse.log', format='%(asctime)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S', level=logging.DEBUG)
+    logging.basicConfig(filename=log.locate, format='%(asctime)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S', level=logging.INFO)
 
     camera = Camera()
     light = Light()
@@ -127,25 +129,25 @@ if __name__ == '__main__':
         logging.info("made today's directory at {}".format(camera.todays_dir))
 
         camera.calculate_frames(light.awake_interval)
-        logging.info('{} frames will be shot today over {} hours'.format(camera.total_frames_today, abs(light.awake_interval)/3600))
+        logging.info('{} frames will be shot today over {} hours'.format(camera.total_frames_today, abs(light.awake_interval) / 3600))
 
-        logging.info('sleeping til sunrise {} hours from now'.format(light.sleep_interval/3600))
+        logging.info('sleeping til sunrise {} hours from now'.format(light.sleep_interval / 3600))
         camera.sleep_til_sunrise(light.sleep_interval)
 
         logging.info("I'm awake!")
 
         camera.take_pic(light.today)
 
-        # TODO: put this in try:except with limited retries
+        # TODO: copy images one at a time and check exit status; try again if failed
         logging.info("copying today's directory to kestrel")
         camera.copy_todays_dir(light.today)
         logging.info("finished copying today's directory")
 
-        camera.delete_todays_dir()
-        logging.info("deleted today's directory\n")
+        # camera.delete_todays_dir()
+        # logging.info("deleted today's directory")
 
+        logging.info("copying today's log to DropBox\n")
         camera.copy_log()
-        logging.info("copied today's log to DropBox")
 
     except Exception as e:
         logging.error(traceback.format_exc())
