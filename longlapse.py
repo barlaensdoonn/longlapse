@@ -15,7 +15,7 @@ import subprocess
 import logging
 import traceback
 from fractions import Fraction
-from longpaths import remote_path, host
+from longpaths import base_remote_path, host, scp_host
 
 log_locate = '/home/pi/longlapse/longlapse.log'
 
@@ -24,7 +24,9 @@ class Camera(object):
 
     def __init__(self):
         self.base_pi_path = '/home/pi/longlapse'
-        self.remote_path = remote_path
+        self.base_remote_path = base_remote_path
+        self.remote_copy_path = 'Desktop/picamera/first_run'
+        self.dropbox_path = 'dropbox_me/Dropbox/longlapse'
         self.copied = False
         self.pixels = (2592, 1944)
         self.framerate = 1
@@ -39,8 +41,8 @@ class Camera(object):
         self.counter = 1
 
     def _make_remote_dir(self, today):
-        self.remote_dir = os.path.join(self.remote_path, today)
-        status = subprocess.call(['ssh', host, 'test -d {}'.format(self.remote_dir)], stdout=subprocess.DEVNULL, stderr=log_locate)
+        self.remote_dir = os.path.join(self.base_remote_path, self.remote_copy_path, today)
+        status = subprocess.call(['ssh', host, 'test -d {}'.format(self.remote_dir)], stdout=subprocess.DEVNULL)
 
         if status == 0:
             logging.info('remote directory already exists at {}'.format(self.remote_dir))
@@ -52,7 +54,11 @@ class Camera(object):
                 return True
             else:
                 logging.warning('problem creating remote directory at {}, not copying anything'.format(self.remote_dir))
+                logging.warning('exit status: {}'.format(status))
                 return False
+        else:
+            logging.warning('problem encountered in _make_remote_dir()')
+            logging.warning('exit status: {}'.format(status))
 
     def take_pic(self, today):
         with picamera.PiCamera(resolution=self.pixels, framerate=self.framerate) as picam:
@@ -104,14 +110,16 @@ class Camera(object):
 
         if remote:
             logging.info("copying today's directory to kestrel")
+            # remove leading '/' so that os.path.join() will work
+            remote_pic_path = os.path.join(scp_host, self.remote_dir[1:])
             status_dict = {}
             trouble = False
-            pic_list = [thing for thing in os.listdir(self.todays_dir) if not thing.startswith('.')]
+            pic_list = [pic for pic in os.listdir(self.todays_dir) if not pic.startswith('.')]
             pic_list.sort()
 
             for pic in pic_list:
                 pic_path = os.path.join(self.todays_dir, pic)
-                status = subprocess.call(['scp', '-p', pic_path, self.remote_dir], stdout=subprocess.DEVNULL, stderr=log_locate)
+                status = subprocess.call(['scp', '-p', pic_path, remote_pic_path], stdout=subprocess.DEVNULL)
                 status_dict[pic] = status
 
             for key in status_dict.keys():
@@ -131,11 +139,11 @@ class Camera(object):
             logging.warning("did not delete today's directory")
 
     def copy_log(self):
-        dropbox_path = 'dropbox_me/Dropbox/longlapse'
         copy_log_from = os.path.join(self.base_pi_path, 'longlapse.log')
-        copy_log_to = os.path.join(self.base_remote_path, dropbox_path)
+        # remove leading '/' so that os.path.join() will work
+        copy_log_to = os.path.join(scp_host, self.base_remote_path[1:], self.dropbox_path)
         logging.info("copying today's log to DropBox\n")
-        subprocess.call(['scp', '-p', copy_log_from, copy_log_to], stdout=subprocess.DEVNULL, stderr=log_locate)
+        subprocess.call(['scp', '-p', copy_log_from, copy_log_to], stdout=subprocess.DEVNULL)
 
 
 class Light(object):
