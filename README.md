@@ -1,4 +1,4 @@
-## *longlapse.py*
+## longlapse.py
 
 ###### python script for longterm timelapse on raspberry pi
 
