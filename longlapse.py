@@ -87,7 +87,7 @@ class Camera(object):
         time.sleep(delay)
 
     def calculate_frames(self, awake_interval):
-        self.total_frames_today = int(abs(awake_interval / 600))
+        self.total_frames_today = int(abs(awake_interval / 300))
         logging.info('{} frames will be shot today over {} hours'.format(camera.total_frames_today, abs(light.awake_interval) / 3600))
 
     def sleep_til_sunrise(self, sleep_interval):
