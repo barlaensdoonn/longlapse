@@ -25,7 +25,7 @@ class Camera(object):
     def __init__(self):
         self.base_pi_path = '/home/pi/longlapse'
         self.base_remote_path = base_remote_path
-        self.remote_copy_path = 'Desktop/picamera/first_run'
+        self.remote_copy_path = '/Volumes/RAGU/longlapse/dayze'
         self.dropbox_path = 'dropbox_me/Dropbox/longlapse'
         self.copied = False
         self.pixels = (2592, 1944)
@@ -41,7 +41,7 @@ class Camera(object):
         self.counter = 1
 
     def _make_remote_dir(self, today):
-        self.remote_dir = os.path.join(self.base_remote_path, self.remote_copy_path, today)
+        self.remote_dir = os.path.join(self.remote_copy_path, today)
         status = subprocess.call(['ssh', host, 'test -d {}'.format(self.remote_dir)], stdout=subprocess.DEVNULL)
 
         if status == 0:
