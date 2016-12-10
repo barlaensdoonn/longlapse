@@ -82,7 +82,7 @@ class Camera(object):
                 self.wait()
 
     def wait(self):
-        next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=10)).replace(second=0, microsecond=0)
+        next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=5)).replace(second=0, microsecond=0)
         delay = (next_minute - datetime.datetime.now()).total_seconds()
         time.sleep(delay)
 
