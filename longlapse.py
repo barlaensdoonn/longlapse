@@ -11,7 +11,6 @@ import datetime
 import os
 import shutil
 import subprocess
-# import shlex
 import logging
 import traceback
 from fractions import Fraction
@@ -77,10 +76,6 @@ class Camera(object):
                 now = datetime.datetime.now()
                 picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
                 logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
-
-            # now = datetime.datetime.now()
-            # picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
-            # logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
 
             self.counter += 1
             self.wait()
@@ -162,6 +157,7 @@ class Light(object):
         self.seattle.elevation = 145
 
     def get_times(self):
+        logging.info('----------------------- {} -----------------------'.format(light.today))
         # self.prev_rise = ephem.localtime(self.seattle.previous_rising(ephem.Sun()))
         self.next_rise = ephem.localtime(self.seattle.next_rising(ephem.Sun()))
         self.next_set = ephem.localtime(self.seattle.next_setting(ephem.Sun()))
@@ -184,7 +180,6 @@ if __name__ == '__main__':
 
     try:
         light.get_times()
-        logging.info('----------------------- {} -----------------------'.format(light.today))
 
         camera.make_todays_dir(light.today)
         camera.calculate_frames(light.awake_interval)
