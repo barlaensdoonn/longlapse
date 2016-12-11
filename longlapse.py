@@ -70,20 +70,20 @@ class Camera(object):
 
             time.sleep(5)
 
-            # picam.awb_mode = self.awb_mode
-            # picam.awb_gains = self.awb_gains
+            picam.awb_mode = self.awb_mode
+            picam.awb_gains = self.awb_gains
 
-            # for frame in range(self.total_frames_today):
-            #     now = datetime.datetime.now()
-            #     picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
-            #     logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
+            for frame in range(self.total_frames_today):
+                now = datetime.datetime.now()
+                picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
+                logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
 
-            now = datetime.datetime.now()
-            picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
-            logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
+            # now = datetime.datetime.now()
+            # picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
+            # logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
 
             self.counter += 1
-            # self.wait()
+            self.wait()
 
     def wait(self):
         next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=5)).replace(second=0, microsecond=0)
@@ -128,6 +128,7 @@ class Camera(object):
 
             for key in status_dict.keys():
                 if status_dict[key] == 1:
+                    # TODO: add uncopied photos to a list, try again next day
                     logging.warning("trouble copying {}".format(key))
                     trouble = True
 
@@ -176,7 +177,7 @@ class Light(object):
 
 
 if __name__ == '__main__':
-    logging.basicConfig(filename=log_locate, format='%(asctime)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S', level=logging.DEBUG)
+    logging.basicConfig(filename=log_locate, format='%(asctime)s %(message)s', datefmt='%Y/%m/%d %H:%M:%S', level=logging.INFO)
 
     camera = Camera()
     light = Light()
@@ -189,9 +190,7 @@ if __name__ == '__main__':
         camera.calculate_frames(light.awake_interval)
         camera.sleep_til_sunrise(light.sleep_interval)
 
-        for frame in range(camera.total_frames_today):
-            camera.take_pic(light.today)
-            camera.wait()
+        camera.take_pic(light.today)
 
         # TODO: use rsync instead of these methods for file copying and directory deleting?
         camera.copy_todays_dir(light.today)
