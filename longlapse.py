@@ -157,7 +157,6 @@ class Light(object):
         self.seattle.elevation = 145
 
     def get_times(self):
-        logging.info('----------------------- {} -----------------------'.format(light.today))
         # self.prev_rise = ephem.localtime(self.seattle.previous_rising(ephem.Sun()))
         self.next_rise = ephem.localtime(self.seattle.next_rising(ephem.Sun()))
         self.next_set = ephem.localtime(self.seattle.next_setting(ephem.Sun()))
@@ -165,6 +164,7 @@ class Light(object):
         self.awake_interval = (self.next_rise - self.next_set).total_seconds()
         self.today = light.next_rise.strftime("%Y-%m-%d")
 
+        logging.info('----------------------- {} -----------------------'.format(self.today))
         logging.debug('light.next_rise = {}'.format(light.next_rise))
         logging.debug('light.next_set = {}'.format(light.next_set))
         logging.debug('light.sleep_interval = {}'.format(light.sleep_interval))
