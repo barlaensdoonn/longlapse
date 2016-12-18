@@ -520,4 +520,8 @@ AttributeError: 'Light' object has no attribute 'today'
 2016/12/17 03:00:04 sleeping til sunrise 4.254442056944445 hours from now
 2016/12/17 07:15:20 I'm awake!
 2016/12/17 16:55:02 made remote directory at /Volumes/RAGU/longlapse/dayze/2016-12-17
+2016/12/17 16:55:02 copying today's directory to kestrel
+2016/12/17 17:36:05 finished copying today's directory
+2016/12/17 17:36:05 deleted today's directory
+2016/12/17 17:36:05 copying today's log to DropBox
 
