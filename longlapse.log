@@ -1,0 +1,521 @@
+2016/11/16 03:00:03 ----------------------- 2016-11-16 -----------------------
+2016/11/16 03:00:03 light.next_rise = 2016-11-16 06:41:48.000002
+2016/11/16 03:00:03 light.next_set = 2016-11-16 17:06:20.000002
+2016/11/16 03:00:03 light.sleep_interval = 13304.416372
+2016/11/16 03:00:03 light.awake_interval = -37472.0
+2016/11/16 03:00:03 light.today = 2016-11-16
+2016/11/16 03:00:03 made today's directory at /home/pi/longlapse/2016-11-16
+2016/11/16 03:00:03 624 frames will be shot today over 10.408888888888889 hours
+2016/11/16 03:00:03 sleeping til sunrise 3.6956712144444444 hours from now
+2016/11/16 06:41:48 I'm awake!
+2016/11/16 17:05:00 copying today's directory to kestrel
+2016/11/16 19:13:17 finished copying
+
+2016/11/17 03:00:03 ----------------------- 2016-11-17 -----------------------
+2016/11/17 03:00:03 light.next_rise = 2016-11-17 06:43:10.000003
+2016/11/17 03:00:03 light.next_set = 2016-11-17 17:05:24.000003
+2016/11/17 03:00:03 light.sleep_interval = 13386.106592
+2016/11/17 03:00:03 light.awake_interval = -37334.0
+2016/11/17 03:00:03 light.today = 2016-11-17
+2016/11/17 03:00:03 made today's directory at /home/pi/longlapse/2016-11-17
+2016/11/17 03:00:03 622 frames will be shot today over 10.370555555555555 hours
+2016/11/17 03:00:03 sleeping til sunrise 3.7183629422222224 hours from now
+2016/11/17 06:43:10 I'm awake!
+2016/11/17 17:05:00 copying today's directory to kestrel
+2016/11/17 19:26:06 finished copying
+
+2016/11/18 03:00:03 ----------------------- 2016-11-18 -----------------------
+2016/11/18 03:00:03 light.next_rise = 2016-11-18 06:44:31.000004
+2016/11/18 03:00:03 light.next_set = 2016-11-18 17:04:29.000004
+2016/11/18 03:00:03 light.sleep_interval = 13467.046257
+2016/11/18 03:00:03 light.awake_interval = -37198.0
+2016/11/18 03:00:03 light.today = 2016-11-18
+2016/11/18 03:00:03 made today's directory at /home/pi/longlapse/2016-11-18
+2016/11/18 03:00:03 619 frames will be shot today over 10.332777777777778 hours
+2016/11/18 03:00:03 sleeping til sunrise 3.7408461825 hours from now
+2016/11/18 06:44:31 I'm awake!
+2016/11/18 09:20:09 Traceback (most recent call last):
+  File "/home/pi/scripts/picamera/longlapse.py", line 116, in <module>
+    camera.take_pic(light.today)
+  File "/home/pi/scripts/picamera/longlapse.py", line 43, in take_pic
+    picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
+  File "/usr/lib/python3/dist-packages/picamera/camera.py", line 1386, in capture
+    if not encoder.wait(self.CAPTURE_TIMEOUT):
+  File "/usr/lib/python3/dist-packages/picamera/encoders.py", line 410, in wait
+    self.stop()
+  File "/usr/lib/python3/dist-packages/picamera/encoders.py", line 441, in stop
+    self._close_output()
+  File "/usr/lib/python3/dist-packages/picamera/encoders.py", line 364, in _close_output
+    output.close()
+OSError: [Errno 28] No space left on device
+
+2016/11/25 03:00:04 ----------------------- 2016-11-25 -----------------------
+2016/11/25 03:00:04 made today's directory at /home/pi/longlapse/2016-11-25
+2016/11/25 03:00:04 60 frames will be shot today over 10.093333333333334 hours
+2016/11/25 03:00:04 sleeping til sunrise 3.8927294675 hours from now
+2016/11/25 06:53:38 I'm awake!
+2016/11/25 07:53:00 copying today's directory to kestrel
+2016/11/25 07:57:37 finished copying
+2016/11/25 07:57:37 deleted today's directory
+
+2016/11/26 03:00:03 ----------------------- 2016-11-26 -----------------------
+2016/11/26 03:00:03 made today's directory at /home/pi/longlapse/2016-11-26
+2016/11/26 03:00:03 60 frames will be shot today over 10.063055555555556 hours
+2016/11/26 03:00:03 sleeping til sunrise 3.913508888888889 hours from now
+2016/11/26 06:54:52 I'm awake!
+2016/11/26 16:55:00 copying today's directory to kestrel
+2016/11/26 19:38:26 finished copying
+2016/11/26 19:38:26 deleted today's directory
+
+2016/11/27 03:00:03 ----------------------- 2016-11-27 -----------------------
+2016/11/27 03:00:03 made today's directory at /home/pi/longlapse/2016-11-27
+2016/11/27 03:00:03 60 frames will be shot today over 10.033333333333333 hours
+2016/11/27 03:00:03 sleeping til sunrise 3.9339001541666665 hours from now
+2016/11/27 06:56:06 I'm awake!
+2016/11/27 16:56:00 copying today's directory to kestrel
+2016/11/27 17:19:04 finished copying
+2016/11/27 17:19:04 deleted today's directory
+
+2016/11/28 03:00:03 ----------------------- 2016-11-28 -----------------------
+2016/11/28 03:00:03 made today's directory at /home/pi/longlapse/2016-11-28
+2016/11/28 03:00:03 60 frames will be shot today over 10.005 hours
+2016/11/28 03:00:03 sleeping til sunrise 3.954114386111111 hours from now
+2016/11/28 06:57:18 I'm awake!
+2016/11/28 16:57:00 copying today's directory to kestrel
+2016/11/28 17:21:36 finished copying
+2016/11/28 17:21:36 deleted today's directory
+
+2016/11/29 03:00:03 ----------------------- 2016-11-29 -----------------------
+2016/11/29 03:00:03 made today's directory at /home/pi/longlapse/2016-11-29
+2016/11/29 03:00:03 59 frames will be shot today over 9.977777777777778 hours
+2016/11/29 03:00:03 sleeping til sunrise 3.9738321430555557 hours from now
+2016/11/29 06:58:29 I'm awake!
+2016/11/29 16:48:00 copying today's directory to kestrel
+2016/11/29 16:57:06 finished copying
+2016/11/29 16:57:07 deleted today's directory
+
+2016/11/30 03:00:03 ----------------------- 2016-11-30 -----------------------
+2016/11/30 03:00:03 made today's directory at /home/pi/longlapse/2016-11-30
+2016/11/30 03:00:03 59 frames will be shot today over 9.95138888888889 hours
+2016/11/30 03:00:03 sleeping til sunrise 3.9931426144444444 hours from now
+2016/11/30 06:59:39 I'm awake!
+2016/11/30 16:49:00 copying today's directory to kestrel
+2016/11/30 17:08:27 finished copying
+2016/11/30 17:08:27 deleted today's directory
+
+2016/12/01 03:00:04 ----------------------- 2016-12-01 -----------------------
+2016/12/01 03:00:04 light.next_rise = 2016-12-01 07:00:48.000003
+2016/12/01 03:00:04 light.next_set = 2016-12-01 16:56:21.000003
+2016/12/01 03:00:04 light.sleep_interval = 14443.851517
+2016/12/01 03:00:04 light.awake_interval = -35733.0
+2016/12/01 03:00:04 light.today = 2016-12-01
+2016/12/01 03:00:04 made today's directory at /home/pi/longlapse/2016-12-01
+2016/12/01 03:00:04 59 frames will be shot today over 9.925833333333333 hours
+2016/12/01 03:00:04 sleeping til sunrise 4.012180976944444 hours from now
+2016/12/01 07:00:48 I'm awake!
+2016/12/01 07:00:53 awb_gains for frame001: (Fraction(157, 128), Fraction(295, 256))
+2016/12/01 07:10:05 awb_gains for frame002: (Fraction(153, 128), Fraction(77, 64))
+2016/12/01 07:20:05 awb_gains for frame003: (Fraction(507, 256), Fraction(235, 256))
+2016/12/01 07:30:05 awb_gains for frame004: (Fraction(99, 64), Fraction(279, 256))
+2016/12/01 07:40:05 awb_gains for frame005: (Fraction(413, 256), Fraction(295, 256))
+2016/12/01 07:50:05 awb_gains for frame006: (Fraction(453, 256), Fraction(269, 256))
+2016/12/01 08:00:05 awb_gains for frame007: (Fraction(465, 256), Fraction(261, 256))
+2016/12/01 08:10:05 awb_gains for frame008: (Fraction(57, 32), Fraction(63, 64))
+2016/12/01 08:20:05 awb_gains for frame009: (Fraction(223, 128), Fraction(1, 1))
+2016/12/01 08:30:05 awb_gains for frame010: (Fraction(441, 256), Fraction(127, 128))
+2016/12/01 08:40:05 awb_gains for frame011: (Fraction(53, 32), Fraction(135, 128))
+2016/12/01 08:50:05 awb_gains for frame012: (Fraction(437, 256), Fraction(1, 1))
+2016/12/01 09:00:05 awb_gains for frame013: (Fraction(213, 128), Fraction(131, 128))
+2016/12/01 09:10:05 awb_gains for frame014: (Fraction(213, 128), Fraction(131, 128))
+2016/12/01 09:20:05 awb_gains for frame015: (Fraction(55, 32), Fraction(129, 128))
+2016/12/01 09:30:05 awb_gains for frame016: (Fraction(437, 256), Fraction(1, 1))
+2016/12/01 09:40:05 awb_gains for frame017: (Fraction(437, 256), Fraction(257, 256))
+2016/12/01 09:50:05 awb_gains for frame018: (Fraction(431, 256), Fraction(263, 256))
+2016/12/01 10:00:05 awb_gains for frame019: (Fraction(109, 64), Fraction(257, 256))
+2016/12/01 10:10:05 awb_gains for frame020: (Fraction(447, 256), Fraction(255, 256))
+2016/12/01 10:20:05 awb_gains for frame021: (Fraction(443, 256), Fraction(255, 256))
+2016/12/01 10:30:05 awb_gains for frame022: (Fraction(435, 256), Fraction(65, 64))
+2016/12/01 10:40:05 awb_gains for frame023: (Fraction(109, 64), Fraction(129, 128))
+2016/12/01 10:50:05 awb_gains for frame024: (Fraction(109, 64), Fraction(257, 256))
+2016/12/01 11:00:05 awb_gains for frame025: (Fraction(217, 128), Fraction(65, 64))
+2016/12/01 11:10:05 awb_gains for frame026: (Fraction(109, 64), Fraction(129, 128))
+2016/12/01 11:20:05 awb_gains for frame027: (Fraction(437, 256), Fraction(259, 256))
+2016/12/01 11:30:05 awb_gains for frame028: (Fraction(109, 64), Fraction(65, 64))
+2016/12/01 11:40:05 awb_gains for frame029: (Fraction(437, 256), Fraction(129, 128))
+2016/12/01 11:50:05 awb_gains for frame030: (Fraction(437, 256), Fraction(129, 128))
+2016/12/01 12:00:05 awb_gains for frame031: (Fraction(437, 256), Fraction(129, 128))
+2016/12/01 12:10:05 awb_gains for frame032: (Fraction(219, 128), Fraction(129, 128))
+2016/12/01 12:20:05 awb_gains for frame033: (Fraction(439, 256), Fraction(261, 256))
+2016/12/01 12:30:05 awb_gains for frame034: (Fraction(437, 256), Fraction(259, 256))
+2016/12/01 12:40:05 awb_gains for frame035: (Fraction(437, 256), Fraction(259, 256))
+2016/12/01 12:50:05 awb_gains for frame036: (Fraction(109, 64), Fraction(259, 256))
+2016/12/01 13:00:05 awb_gains for frame037: (Fraction(109, 64), Fraction(259, 256))
+2016/12/01 13:10:05 awb_gains for frame038: (Fraction(437, 256), Fraction(129, 128))
+2016/12/01 13:20:05 awb_gains for frame039: (Fraction(435, 256), Fraction(259, 256))
+2016/12/01 13:30:05 awb_gains for frame040: (Fraction(55, 32), Fraction(129, 128))
+2016/12/01 13:40:05 awb_gains for frame041: (Fraction(219, 128), Fraction(129, 128))
+2016/12/01 13:50:05 awb_gains for frame042: (Fraction(55, 32), Fraction(65, 64))
+2016/12/01 14:00:05 awb_gains for frame043: (Fraction(219, 128), Fraction(129, 128))
+2016/12/01 14:10:05 awb_gains for frame044: (Fraction(437, 256), Fraction(129, 128))
+2016/12/01 14:20:05 awb_gains for frame045: (Fraction(437, 256), Fraction(259, 256))
+2016/12/01 14:30:05 awb_gains for frame046: (Fraction(439, 256), Fraction(261, 256))
+2016/12/01 14:40:05 awb_gains for frame047: (Fraction(219, 128), Fraction(259, 256))
+2016/12/01 14:50:05 awb_gains for frame048: (Fraction(433, 256), Fraction(65, 64))
+2016/12/01 15:00:05 awb_gains for frame049: (Fraction(27, 16), Fraction(261, 256))
+2016/12/01 15:10:05 awb_gains for frame050: (Fraction(217, 128), Fraction(261, 256))
+2016/12/01 15:20:05 awb_gains for frame051: (Fraction(219, 128), Fraction(259, 256))
+2016/12/01 15:30:05 awb_gains for frame052: (Fraction(441, 256), Fraction(257, 256))
+2016/12/01 15:40:05 awb_gains for frame053: (Fraction(443, 256), Fraction(259, 256))
+2016/12/01 15:50:05 awb_gains for frame054: (Fraction(445, 256), Fraction(263, 256))
+2016/12/01 16:00:05 awb_gains for frame055: (Fraction(441, 256), Fraction(137, 128))
+2016/12/01 16:10:05 awb_gains for frame056: (Fraction(427, 256), Fraction(69, 64))
+2016/12/01 16:20:05 awb_gains for frame057: (Fraction(433, 256), Fraction(33, 32))
+2016/12/01 16:30:05 awb_gains for frame058: (Fraction(491, 256), Fraction(233, 256))
+2016/12/01 16:40:05 awb_gains for frame059: (Fraction(339, 256), Fraction(375, 256))
+2016/12/01 16:50:00 copying today's directory to kestrel
+2016/12/01 17:09:34 finished copying
+2016/12/01 17:09:34 deleted today's directory
+
+2016/12/02 03:00:03 ----------------------- 2016-12-02 -----------------------
+2016/12/02 03:00:03 light.next_rise = 2016-12-02 07:01:56.000004
+2016/12/02 03:00:03 light.next_set = 2016-12-02 16:56:02.000004
+2016/12/02 03:00:03 light.sleep_interval = 14512.62592
+2016/12/02 03:00:03 light.awake_interval = -35646.0
+2016/12/02 03:00:03 light.today = 2016-12-02
+2016/12/02 03:00:03 made today's directory at /home/pi/longlapse/2016-12-02
+2016/12/02 03:00:03 59 frames will be shot today over 9.901666666666667 hours
+2016/12/02 03:00:03 sleeping til sunrise 4.031284977777778 hours from now
+2016/12/02 07:01:56 I'm awake!
+2016/12/02 07:02:04 awb_gains for frame001: (Fraction(55, 32), Fraction(257, 256))
+2016/12/02 07:12:03 awb_gains for frame002: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 07:22:04 awb_gains for frame003: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 07:32:03 awb_gains for frame004: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 07:42:03 awb_gains for frame005: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 07:52:03 awb_gains for frame006: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 08:02:04 awb_gains for frame007: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 08:12:03 awb_gains for frame008: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 08:22:03 awb_gains for frame009: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 08:32:03 awb_gains for frame010: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 08:42:03 awb_gains for frame011: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 08:52:04 awb_gains for frame012: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 09:02:03 awb_gains for frame013: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 09:12:03 awb_gains for frame014: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 09:22:03 awb_gains for frame015: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 09:32:04 awb_gains for frame016: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 09:42:03 awb_gains for frame017: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 09:52:03 awb_gains for frame018: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 10:02:03 awb_gains for frame019: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 10:12:03 awb_gains for frame020: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 10:22:04 awb_gains for frame021: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 10:32:03 awb_gains for frame022: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 10:42:03 awb_gains for frame023: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 10:52:03 awb_gains for frame024: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 11:02:04 awb_gains for frame025: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 11:12:03 awb_gains for frame026: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 11:22:03 awb_gains for frame027: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 11:32:03 awb_gains for frame028: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 11:42:04 awb_gains for frame029: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 11:52:04 awb_gains for frame030: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 12:02:03 awb_gains for frame031: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 12:12:03 awb_gains for frame032: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 12:22:03 awb_gains for frame033: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 12:32:04 awb_gains for frame034: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 12:42:03 awb_gains for frame035: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 12:52:03 awb_gains for frame036: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 13:02:03 awb_gains for frame037: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 13:12:04 awb_gains for frame038: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 13:22:03 awb_gains for frame039: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 13:32:03 awb_gains for frame040: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 13:42:03 awb_gains for frame041: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 13:52:03 awb_gains for frame042: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 14:02:04 awb_gains for frame043: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 14:12:03 awb_gains for frame044: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 14:22:03 awb_gains for frame045: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 14:32:03 awb_gains for frame046: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 14:42:04 awb_gains for frame047: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 14:52:03 awb_gains for frame048: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 15:02:03 awb_gains for frame049: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 15:12:03 awb_gains for frame050: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 15:22:03 awb_gains for frame051: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 15:32:04 awb_gains for frame052: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 15:42:03 awb_gains for frame053: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 15:52:03 awb_gains for frame054: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 16:02:03 awb_gains for frame055: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 16:12:04 awb_gains for frame056: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 16:22:03 awb_gains for frame057: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 16:32:03 awb_gains for frame058: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 16:42:03 awb_gains for frame059: (Fraction(447, 256), Fraction(255, 256))
+2016/12/02 16:52:00 copying today's directory to kestrel
+2016/12/02 17:04:48 finished copying today's directory
+2016/12/02 17:04:49 deleted today's directory
+
+2016/12/02 17:04:49 copied today's log to DropBox
+2016/12/03 03:00:03 ----------------------- 2016-12-03 -----------------------
+2016/12/03 03:00:03 made today's directory at /home/pi/longlapse/2016-12-03
+2016/12/03 03:00:03 59 frames will be shot today over 9.87888888888889 hours
+2016/12/03 03:00:03 sleeping til sunrise 4.049296648055556 hours from now
+2016/12/03 07:03:01 I'm awake!
+2016/12/03 16:53:00 copying today's directory to kestrel
+2016/12/03 16:58:43 finished copying today's directory
+2016/12/03 16:58:43 deleted today's directory
+
+2016/12/03 16:58:48 copied today's log to DropBox
+2016/12/04 03:00:03 ----------------------- 2016-12-04 -----------------------
+2016/12/04 03:00:03 made today's directory at /home/pi/longlapse/2016-12-04
+2016/12/04 03:00:03 59 frames will be shot today over 9.856666666666667 hours
+2016/12/04 03:00:03 sleeping til sunrise 4.067318740833334 hours from now
+2016/12/04 07:04:06 I'm awake!
+2016/12/04 16:54:00 copying today's directory to kestrel
+2016/12/04 17:02:06 finished copying today's directory
+2016/12/04 17:02:12 copied today's log to DropBox
+
+2016/12/05 03:00:03 ----------------------- 2016-12-05 -----------------------
+2016/12/05 03:00:03 made today's directory at /home/pi/longlapse/2016-12-05
+2016/12/05 03:00:03 59 frames will be shot today over 9.835833333333333 hours
+2016/12/05 03:00:03 sleeping til sunrise 4.084798568055556 hours from now
+2016/12/05 07:05:09 I'm awake!
+2016/12/05 16:55:00 copying today's directory to kestrel
+2016/12/05 17:12:00 finished copying today's directory
+2016/12/05 17:12:01 copied today's log to DropBox
+
+2016/12/06 03:00:03 ----------------------- 2016-12-06 -----------------------
+2016/12/06 03:00:03 made today's directory at /home/pi/longlapse/2016-12-06
+2016/12/06 03:00:03 58 frames will be shot today over 9.81638888888889 hours
+2016/12/06 03:00:03 sleeping til sunrise 4.101811583888889 hours from now
+2016/12/06 07:06:10 I'm awake!
+2016/12/06 16:46:00 copying today's directory to kestrel
+2016/12/06 17:11:08 finished copying today's directory
+2016/12/06 17:11:08 copying today's log to DropBox
+
+2016/12/07 03:00:03 ----------------------- 2016-12-07 -----------------------
+2016/12/07 03:00:03 made today's directory at /home/pi/longlapse/2016-12-07
+2016/12/07 03:00:03 58 frames will be shot today over 9.798333333333334 hours
+2016/12/07 03:00:03 sleeping til sunrise 4.118168210277778 hours from now
+2016/12/07 07:07:09 I'm awake!
+2016/12/07 16:47:00 copying today's directory to kestrel
+2016/12/07 17:14:58 finished copying today's directory
+2016/12/07 17:14:58 copying today's log to DropBox
+
+2016/12/08 03:00:04 ----------------------- 2016-12-08 -----------------------
+2016/12/08 03:00:04 made today's directory at /home/pi/longlapse/2016-12-08
+2016/12/08 03:00:04 58 frames will be shot today over 9.78111111111111 hours
+2016/12/08 03:00:04 sleeping til sunrise 4.13408478 hours from now
+2016/12/08 07:08:07 I'm awake!
+2016/12/08 16:48:00 Traceback (most recent call last):
+  File "/home/pi/longlapse/longlapse.py", line 183, in <module>
+    camera.copy_todays_dir(light.today)
+  File "/home/pi/longlapse/longlapse.py", line 103, in copy_todays_dir
+    remote = self._make_remote_dir(today)
+  File "/home/pi/longlapse/longlapse.py", line 43, in _make_remote_dir
+    status = subprocess.call(['ssh', host, 'test -d {}'.format(self.remote_dir)], stdout=subprocess.DEVNULL, stderr=log_locate)
+  File "/usr/lib/python3.4/subprocess.py", line 537, in call
+    with Popen(*popenargs, **kwargs) as p:
+  File "/usr/lib/python3.4/subprocess.py", line 823, in __init__
+    errread, errwrite) = self._get_handles(stdin, stdout, stderr)
+  File "/usr/lib/python3.4/subprocess.py", line 1316, in _get_handles
+    errwrite = stderr.fileno()
+AttributeError: 'str' object has no attribute 'fileno'
+
+2016/12/09 03:00:03 ----------------------- 2016-12-09 -----------------------
+2016/12/09 03:00:03 made today's directory at /home/pi/longlapse/2016-12-09
+2016/12/09 03:00:03 58 frames will be shot today over 9.765277777777778 hours
+2016/12/09 03:00:03 sleeping til sunrise 4.149874103055556 hours from now
+2016/12/09 07:09:03 I'm awake!
+2016/12/09 16:49:01 made remote directory at /Users/kestrel/Desktop/picamera/first_run/2016-12-09
+2016/12/09 16:49:01 copying today's directory to kestrel
+2016/12/09 17:03:28 finished copying today's directory
+2016/12/09 17:03:29 deleted today's directory
+2016/12/09 17:03:29 copying today's log to DropBox
+
+2016/12/10 03:00:03 light.next_rise = 2016-12-10 07:09:57.000005
+2016/12/10 03:00:03 light.next_set = 2016-12-10 16:54:59.000005
+2016/12/10 03:00:03 light.sleep_interval = 14993.473668
+2016/12/10 03:00:03 light.awake_interval = -35102.0
+2016/12/10 03:00:03 light.today = 2016-12-10
+2016/12/10 03:00:03 ----------------------- 2016-12-10 -----------------------
+2016/12/10 03:00:03 made today's directory at /home/pi/longlapse/2016-12-10
+2016/12/10 03:00:03 117 frames will be shot today over 9.750555555555556 hours
+2016/12/10 03:00:03 sleeping til sunrise 4.164853796666667 hours from now
+2016/12/10 07:09:57 I'm awake!
+2016/12/10 07:10:05 awb_gains for frame001: (Fraction(0, 1), Fraction(0, 1))
+2016/12/10 07:15:08 awb_gains for frame002: (Fraction(0, 1), Fraction(0, 1))
+2016/12/10 07:20:08 awb_gains for frame003: (Fraction(125, 256), Fraction(79, 128))
+2016/12/10 07:25:08 awb_gains for frame004: (Fraction(21, 32), Fraction(195, 256))
+2016/12/10 07:30:08 awb_gains for frame005: (Fraction(193, 128), Fraction(31, 32))
+2016/12/10 07:35:08 awb_gains for frame006: (Fraction(479, 256), Fraction(233, 256))
+2016/12/10 07:40:08 awb_gains for frame007: (Fraction(117, 64), Fraction(121, 128))
+2016/12/10 07:45:08 awb_gains for frame008: (Fraction(235, 128), Fraction(249, 256))
+2016/12/10 07:50:08 awb_gains for frame009: (Fraction(479, 256), Fraction(249, 256))
+2016/12/10 07:55:08 awb_gains for frame010: (Fraction(61, 32), Fraction(249, 256))
+2016/12/10 08:00:08 awb_gains for frame011: (Fraction(479, 256), Fraction(127, 128))
+2016/12/10 08:05:08 awb_gains for frame012: (Fraction(459, 256), Fraction(263, 256))
+2016/12/10 08:10:08 awb_gains for frame013: (Fraction(449, 256), Fraction(267, 256))
+2016/12/10 08:15:08 awb_gains for frame014: (Fraction(459, 256), Fraction(131, 128))
+2016/12/10 08:20:08 awb_gains for frame015: (Fraction(467, 256), Fraction(259, 256))
+2016/12/10 08:25:08 awb_gains for frame016: (Fraction(459, 256), Fraction(65, 64))
+2016/12/10 08:30:08 awb_gains for frame017: (Fraction(461, 256), Fraction(261, 256))
+2016/12/10 08:35:08 awb_gains for frame018: (Fraction(57, 32), Fraction(259, 256))
+2016/12/10 08:40:08 awb_gains for frame019: (Fraction(57, 32), Fraction(65, 64))
+2016/12/10 08:45:08 awb_gains for frame020: (Fraction(449, 256), Fraction(131, 128))
+2016/12/10 08:50:08 awb_gains for frame021: (Fraction(451, 256), Fraction(129, 128))
+2016/12/10 08:55:08 awb_gains for frame022: (Fraction(223, 128), Fraction(33, 32))
+2016/12/10 09:00:08 awb_gains for frame023: (Fraction(111, 64), Fraction(267, 256))
+2016/12/10 09:05:08 awb_gains for frame024: (Fraction(447, 256), Fraction(259, 256))
+2016/12/10 09:10:08 awb_gains for frame025: (Fraction(113, 64), Fraction(257, 256))
+2016/12/10 09:15:08 awb_gains for frame026: (Fraction(113, 64), Fraction(1, 1))
+2016/12/10 09:20:08 awb_gains for frame027: (Fraction(453, 256), Fraction(257, 256))
+2016/12/10 09:25:08 awb_gains for frame028: (Fraction(451, 256), Fraction(1, 1))
+2016/12/10 09:30:08 awb_gains for frame029: (Fraction(7, 4), Fraction(259, 256))
+2016/12/10 09:35:08 awb_gains for frame030: (Fraction(443, 256), Fraction(133, 128))
+2016/12/10 09:40:08 awb_gains for frame031: (Fraction(111, 64), Fraction(133, 128))
+2016/12/10 09:45:08 awb_gains for frame032: (Fraction(445, 256), Fraction(131, 128))
+2016/12/10 09:50:08 awb_gains for frame033: (Fraction(445, 256), Fraction(261, 256))
+2016/12/10 09:55:08 awb_gains for frame034: (Fraction(223, 128), Fraction(131, 128))
+2016/12/10 10:00:08 awb_gains for frame035: (Fraction(445, 256), Fraction(261, 256))
+2016/12/10 10:05:08 awb_gains for frame036: (Fraction(111, 64), Fraction(263, 256))
+2016/12/10 10:10:08 awb_gains for frame037: (Fraction(221, 128), Fraction(135, 128))
+2016/12/10 10:15:08 awb_gains for frame038: (Fraction(221, 128), Fraction(269, 256))
+2016/12/10 10:20:08 awb_gains for frame039: (Fraction(441, 256), Fraction(273, 256))
+2016/12/10 10:25:08 awb_gains for frame040: (Fraction(111, 64), Fraction(133, 128))
+2016/12/10 10:30:08 awb_gains for frame041: (Fraction(223, 128), Fraction(261, 256))
+2016/12/10 10:35:08 awb_gains for frame042: (Fraction(7, 4), Fraction(65, 64))
+2016/12/10 10:40:08 awb_gains for frame043: (Fraction(447, 256), Fraction(261, 256))
+2016/12/10 10:45:08 awb_gains for frame044: (Fraction(223, 128), Fraction(131, 128))
+2016/12/10 10:50:08 awb_gains for frame045: (Fraction(443, 256), Fraction(133, 128))
+2016/12/10 10:55:08 awb_gains for frame046: (Fraction(111, 64), Fraction(265, 256))
+2016/12/10 11:00:08 awb_gains for frame047: (Fraction(447, 256), Fraction(131, 128))
+2016/12/10 11:05:08 awb_gains for frame048: (Fraction(227, 128), Fraction(65, 64))
+2016/12/10 11:10:08 awb_gains for frame049: (Fraction(229, 128), Fraction(259, 256))
+2016/12/10 11:15:08 awb_gains for frame050: (Fraction(57, 32), Fraction(1, 1))
+2016/12/10 11:20:08 awb_gains for frame051: (Fraction(451, 256), Fraction(129, 128))
+2016/12/10 11:25:08 awb_gains for frame052: (Fraction(223, 128), Fraction(263, 256))
+2016/12/10 11:30:08 awb_gains for frame053: (Fraction(443, 256), Fraction(67, 64))
+2016/12/10 11:35:08 awb_gains for frame054: (Fraction(445, 256), Fraction(265, 256))
+2016/12/10 11:40:08 awb_gains for frame055: (Fraction(447, 256), Fraction(131, 128))
+2016/12/10 11:45:08 awb_gains for frame056: (Fraction(451, 256), Fraction(129, 128))
+2016/12/10 11:50:08 awb_gains for frame057: (Fraction(451, 256), Fraction(259, 256))
+2016/12/10 11:55:08 awb_gains for frame058: (Fraction(453, 256), Fraction(1, 1))
+2016/12/10 12:00:08 awb_gains for frame059: (Fraction(227, 128), Fraction(127, 128))
+2016/12/10 12:05:08 awb_gains for frame060: (Fraction(449, 256), Fraction(65, 64))
+2016/12/10 12:10:08 awb_gains for frame061: (Fraction(453, 256), Fraction(255, 256))
+2016/12/10 12:15:08 awb_gains for frame062: (Fraction(225, 128), Fraction(257, 256))
+2016/12/10 12:20:08 awb_gains for frame063: (Fraction(57, 32), Fraction(63, 64))
+2016/12/10 12:25:08 awb_gains for frame064: (Fraction(227, 128), Fraction(253, 256))
+2016/12/10 12:30:08 awb_gains for frame065: (Fraction(57, 32), Fraction(255, 256))
+2016/12/10 12:35:08 awb_gains for frame066: (Fraction(459, 256), Fraction(65, 64))
+2016/12/10 12:40:08 awb_gains for frame067: (Fraction(457, 256), Fraction(257, 256))
+2016/12/10 12:45:08 awb_gains for frame068: (Fraction(451, 256), Fraction(133, 128))
+2016/12/10 12:50:08 awb_gains for frame069: (Fraction(113, 64), Fraction(257, 256))
+2016/12/10 12:55:08 awb_gains for frame070: (Fraction(7, 4), Fraction(261, 256))
+2016/12/10 13:00:08 awb_gains for frame071: (Fraction(445, 256), Fraction(263, 256))
+2016/12/10 13:05:08 awb_gains for frame072: (Fraction(447, 256), Fraction(131, 128))
+2016/12/10 13:10:08 awb_gains for frame073: (Fraction(225, 128), Fraction(257, 256))
+2016/12/10 13:15:08 awb_gains for frame074: (Fraction(223, 128), Fraction(269, 256))
+2016/12/10 13:20:08 awb_gains for frame075: (Fraction(111, 64), Fraction(259, 256))
+2016/12/10 13:25:08 awb_gains for frame076: (Fraction(459, 256), Fraction(259, 256))
+2016/12/10 13:30:08 awb_gains for frame077: (Fraction(113, 64), Fraction(257, 256))
+2016/12/10 13:35:08 awb_gains for frame078: (Fraction(453, 256), Fraction(255, 256))
+2016/12/10 13:40:08 awb_gains for frame079: (Fraction(451, 256), Fraction(255, 256))
+2016/12/10 13:45:08 awb_gains for frame080: (Fraction(111, 64), Fraction(257, 256))
+2016/12/10 13:50:08 awb_gains for frame081: (Fraction(445, 256), Fraction(257, 256))
+2016/12/10 13:55:08 awb_gains for frame082: (Fraction(7, 4), Fraction(255, 256))
+2016/12/10 14:00:08 awb_gains for frame083: (Fraction(445, 256), Fraction(255, 256))
+2016/12/10 14:05:08 awb_gains for frame084: (Fraction(223, 128), Fraction(1, 1))
+2016/12/10 14:10:08 awb_gains for frame085: (Fraction(225, 128), Fraction(127, 128))
+2016/12/10 14:15:08 awb_gains for frame086: (Fraction(233, 128), Fraction(265, 256))
+2016/12/10 14:20:08 awb_gains for frame087: (Fraction(473, 256), Fraction(257, 256))
+2016/12/10 14:25:08 awb_gains for frame088: (Fraction(227, 128), Fraction(33, 32))
+2016/12/10 14:30:08 awb_gains for frame089: (Fraction(443, 256), Fraction(133, 128))
+2016/12/10 14:35:08 awb_gains for frame090: (Fraction(111, 64), Fraction(127, 128))
+2016/12/10 14:40:08 awb_gains for frame091: (Fraction(109, 64), Fraction(129, 128))
+2016/12/10 14:45:08 awb_gains for frame092: (Fraction(445, 256), Fraction(257, 256))
+2016/12/10 14:50:08 awb_gains for frame093: (Fraction(445, 256), Fraction(257, 256))
+2016/12/10 14:55:08 awb_gains for frame094: (Fraction(447, 256), Fraction(1, 1))
+2016/12/10 15:00:08 awb_gains for frame095: (Fraction(449, 256), Fraction(1, 1))
+2016/12/10 15:05:08 awb_gains for frame096: (Fraction(453, 256), Fraction(1, 1))
+2016/12/10 15:10:08 awb_gains for frame097: (Fraction(449, 256), Fraction(255, 256))
+2016/12/10 15:15:08 awb_gains for frame098: (Fraction(55, 32), Fraction(261, 256))
+2016/12/10 15:20:08 awb_gains for frame099: (Fraction(435, 256), Fraction(263, 256))
+2016/12/10 15:25:08 awb_gains for frame100: (Fraction(7, 4), Fraction(135, 128))
+2016/12/10 15:30:08 awb_gains for frame101: (Fraction(437, 256), Fraction(69, 64))
+2016/12/10 15:35:08 awb_gains for frame102: (Fraction(439, 256), Fraction(33, 32))
+2016/12/10 15:40:08 awb_gains for frame103: (Fraction(423, 256), Fraction(285, 256))
+2016/12/10 15:45:08 awb_gains for frame104: (Fraction(191, 128), Fraction(337, 256))
+2016/12/10 15:50:08 awb_gains for frame105: (Fraction(395, 256), Fraction(159, 128))
+2016/12/10 15:55:08 awb_gains for frame106: (Fraction(405, 256), Fraction(153, 128))
+2016/12/10 16:00:08 awb_gains for frame107: (Fraction(393, 256), Fraction(317, 256))
+2016/12/10 16:05:08 awb_gains for frame108: (Fraction(219, 128), Fraction(273, 256))
+2016/12/10 16:10:08 awb_gains for frame109: (Fraction(447, 256), Fraction(265, 256))
+2016/12/10 16:15:08 awb_gains for frame110: (Fraction(453, 256), Fraction(255, 256))
+2016/12/10 16:20:08 awb_gains for frame111: (Fraction(223, 128), Fraction(255, 256))
+2016/12/10 16:25:08 awb_gains for frame112: (Fraction(219, 128), Fraction(255, 256))
+2016/12/10 16:30:08 awb_gains for frame113: (Fraction(223, 128), Fraction(17, 16))
+2016/12/10 16:35:08 awb_gains for frame114: (Fraction(169, 256), Fraction(3, 2))
+2016/12/10 16:40:08 awb_gains for frame115: (Fraction(0, 1), Fraction(0, 1))
+2016/12/10 16:45:08 awb_gains for frame116: (Fraction(157, 128), Fraction(281, 256))
+2016/12/10 16:50:08 awb_gains for frame117: (Fraction(151, 256), Fraction(125, 256))
+2016/12/10 16:55:01 made remote directory at /Volumes/RAGU/longlapse/dayze/2016-12-10
+2016/12/10 16:55:01 copying today's directory to kestrel
+2016/12/10 17:53:46 finished copying today's directory
+2016/12/10 17:53:47 deleted today's directory
+2016/12/10 17:53:47 copying today's log to DropBox
+
+2016/12/11 03:00:03 Traceback (most recent call last):
+  File "/home/pi/longlapse/longlapse.py", line 182, in <module>
+    light.get_times()
+  File "/home/pi/longlapse/longlapse.py", line 160, in get_times
+    logging.info('----------------------- {} -----------------------'.format(light.today))
+AttributeError: 'Light' object has no attribute 'today'
+
+2016/12/12 03:00:03 Traceback (most recent call last):
+  File "/home/pi/longlapse/longlapse.py", line 182, in <module>
+    light.get_times()
+  File "/home/pi/longlapse/longlapse.py", line 160, in get_times
+    logging.info('----------------------- {} -----------------------'.format(light.today))
+AttributeError: 'Light' object has no attribute 'today'
+
+2016/12/13 03:00:03 Traceback (most recent call last):
+  File "/home/pi/longlapse/longlapse.py", line 182, in <module>
+    light.get_times()
+  File "/home/pi/longlapse/longlapse.py", line 160, in get_times
+    logging.info('----------------------- {} -----------------------'.format(light.today))
+AttributeError: 'Light' object has no attribute 'today'
+
+2016/12/14 03:00:03 ----------------------- 2016-12-14 -----------------------
+2016/12/14 03:00:03 made today's directory at /home/pi/longlapse/2016-12-14
+2016/12/14 03:00:03 116 frames will be shot today over 9.705 hours
+2016/12/14 03:00:03 sleeping til sunrise 4.219501013611111 hours from now
+2016/12/14 07:13:14 I'm awake!
+2016/12/14 07:26:02 made remote directory at /Volumes/RAGU/longlapse/dayze/2016-12-14
+2016/12/14 07:26:02 copying today's directory to kestrel
+2016/12/14 07:26:27 finished copying today's directory
+2016/12/14 07:26:27 deleted today's directory
+2016/12/14 07:26:27 copying today's log to DropBox
+
+2016/12/15 03:00:03 ----------------------- 2016-12-15 -----------------------
+2016/12/15 03:00:03 made today's directory at /home/pi/longlapse/2016-12-15
+2016/12/15 03:00:03 116 frames will be shot today over 9.696666666666667 hours
+2016/12/15 03:00:03 sleeping til sunrise 4.231783927777778 hours from now
+2016/12/15 07:13:58 I'm awake!
+2016/12/15 07:27:02 made remote directory at /Volumes/RAGU/longlapse/dayze/2016-12-15
+2016/12/15 07:27:02 copying today's directory to kestrel
+2016/12/15 07:27:25 finished copying today's directory
+2016/12/15 07:27:25 deleted today's directory
+2016/12/15 07:27:25 copying today's log to DropBox
+
+2016/12/16 03:00:03 ----------------------- 2016-12-16 -----------------------
+2016/12/16 03:00:03 made today's directory at /home/pi/longlapse/2016-12-16
+2016/12/16 03:00:03 116 frames will be shot today over 9.69 hours
+2016/12/16 03:00:03 sleeping til sunrise 4.243570946944445 hours from now
+2016/12/16 07:14:40 I'm awake!
+2016/12/16 16:54:02 made remote directory at /Volumes/RAGU/longlapse/dayze/2016-12-16
+2016/12/16 16:54:02 copying today's directory to kestrel
+2016/12/16 17:32:21 finished copying today's directory
+2016/12/16 17:32:21 deleted today's directory
+2016/12/16 17:32:21 copying today's log to DropBox
+
+2016/12/17 03:00:04 ----------------------- 2016-12-17 -----------------------
+2016/12/17 03:00:04 made today's directory at /home/pi/longlapse/2016-12-17
+2016/12/17 03:00:04 116 frames will be shot today over 9.684444444444445 hours
+2016/12/17 03:00:04 sleeping til sunrise 4.254442056944445 hours from now
+2016/12/17 07:15:20 I'm awake!
