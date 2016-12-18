@@ -519,3 +519,5 @@ AttributeError: 'Light' object has no attribute 'today'
 2016/12/17 03:00:04 116 frames will be shot today over 9.684444444444445 hours
 2016/12/17 03:00:04 sleeping til sunrise 4.254442056944445 hours from now
 2016/12/17 07:15:20 I'm awake!
+2016/12/17 16:55:02 made remote directory at /Volumes/RAGU/longlapse/dayze/2016-12-17
+
