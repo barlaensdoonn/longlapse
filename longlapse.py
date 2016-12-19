@@ -2,7 +2,7 @@
 
 # timelapse based on sunrise/sunset
 # 11/13/16
-# updated 12/1/16
+# updated 12/18/16
 
 import picamera
 import ephem
@@ -16,16 +16,16 @@ import traceback
 from fractions import Fraction
 from longpaths import base_remote_path, host, scp_host
 
-log_locate = '/home/pi/longlapse/longlapse.log'
+base_pi_path = '/home/pi/gitbucket/longlapse'
+log_locate = os.path.join(base_pi_path, 'longlapse.log')
 
 
 class Camera(object):
 
     def __init__(self):
-        self.base_pi_path = '/home/pi/longlapse'
+        self.base_pi_path = base_pi_path
         self.base_remote_path = base_remote_path
         self.remote_copy_path = '/Volumes/RAGU/longlapse/dayze'
-        self.dropbox_path = 'dropbox_me/Dropbox/longlapse'
         self.copied = False
         self.pixels = (2592, 1944)
         self.framerate = 1
@@ -77,8 +77,8 @@ class Camera(object):
                 picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
                 logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
 
-            self.counter += 1
-            self.wait()
+                self.counter += 1
+                self.wait()
 
     def wait(self):
         next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=5)).replace(second=0, microsecond=0)
@@ -124,6 +124,7 @@ class Camera(object):
             for key in status_dict.keys():
                 if status_dict[key] == 1:
                     # TODO: add uncopied photos to a list, try again next day
+                    #       or just have the script try to copy all folders it sees
                     logging.warning("trouble copying {}".format(key))
                     trouble = True
 
@@ -138,12 +139,14 @@ class Camera(object):
         else:
             logging.warning("did not delete today's directory")
 
-    def copy_log(self):
-        copy_log_from = os.path.join(self.base_pi_path, 'longlapse.log')
-        # remove leading '/' so that os.path.join() will work
-        copy_log_to = os.path.join(scp_host, self.base_remote_path[1:], self.dropbox_path)
-        logging.info("copying today's log to DropBox\n")
-        subprocess.call(['scp', '-p', copy_log_from, copy_log_to], stdout=subprocess.DEVNULL)
+    def push_log(self):
+        git_dir = os.path.join(base_pi_path, '.git')
+        work_tree = base_pi_path
+
+        logging.info("pushing today's log to github\n")
+        subprocess.call(['git', '--git-dir', git_dir, '--work-tree', work_tree, 'add', log_locate])
+        subprocess.call(['git', '--git-dir', git_dir, '--work-tree', work_tree, 'commit', '-m' 'update log'])
+        subprocess.call(['git', '--git-dir', git_dir, '--work-tree', work_tree, 'push'])
 
 
 class Light(object):
@@ -190,7 +193,7 @@ if __name__ == '__main__':
         # TODO: use rsync instead of these methods for file copying and directory deleting?
         camera.copy_todays_dir(light.today)
         camera.delete_todays_dir()
-        camera.copy_log()
+        camera.push_log()
 
     except Exception as e:
         logging.error(traceback.format_exc())
