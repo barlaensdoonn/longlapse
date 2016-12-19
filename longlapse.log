@@ -523,5 +523,4 @@ AttributeError: 'Light' object has no attribute 'today'
 2016/12/17 16:55:02 copying today's directory to kestrel
 2016/12/17 17:36:05 finished copying today's directory
 2016/12/17 17:36:05 deleted today's directory
-2016/12/17 17:36:05 copying toda
-
+2016/12/17 17:36:05 copying today's log to DropBox
