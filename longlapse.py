@@ -37,7 +37,6 @@ class Camera(object):
         self.awb_mode = 'off'
         self.awb_gains = (Fraction(447, 256), Fraction(255, 256))
         # self.exposure_mode = 'off'  # exposure_mode off disables picam.analog_gain & picam.digital_gain, which are not directly settable
-        self.counter = 1
 
     def _make_remote_dir(self, today):
         self.remote_dir = os.path.join(self.remote_copy_path, today)
@@ -59,7 +58,7 @@ class Camera(object):
             logging.warning('problem encountered in _make_remote_dir()')
             logging.warning('exit status: {}'.format(status))
 
-    def take_pic(self, today):
+    def take_pics(self, today):
         with picamera.PiCamera(resolution=self.pixels, framerate=self.framerate) as picam:
             picam.iso = self.iso
             picam.led = self.led
@@ -71,13 +70,14 @@ class Camera(object):
 
             picam.awb_mode = self.awb_mode
             picam.awb_gains = self.awb_gains
+            counter = 1
 
             for frame in range(self.total_frames_today):
                 now = datetime.datetime.now()
-                picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), self.counter)))
-                logging.debug("awb_gains for frame{:03d}: {}".format(self.counter, picam.awb_gains))
+                picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), counter)))
+                logging.debug("awb_gains for frame{:03d}: {}".format(counter, picam.awb_gains))
 
-                self.counter += 1
+                counter += 1
                 self.wait()
 
     def wait(self):
@@ -188,7 +188,7 @@ if __name__ == '__main__':
         camera.calculate_frames(light.awake_interval)
         camera.sleep_til_sunrise(light.sleep_interval)
 
-        camera.take_pic(light.today)
+        camera.take_pics(light.today)
 
         # TODO: use rsync instead of these methods for file copying and directory deleting?
         camera.copy_todays_dir(light.today)
