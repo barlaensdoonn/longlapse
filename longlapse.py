@@ -2,7 +2,7 @@
 
 # timelapse based on sunrise/sunset
 # 11/13/16
-# updated 12/18/16
+# updated 12/20/16
 
 import picamera
 import ephem
@@ -21,6 +21,7 @@ log_locate = os.path.join(base_pi_path, 'longlapse.log')
 
 
 class Camera(object):
+    '''class to hold camera and file management functions'''
 
     def __init__(self):
         self.base_pi_path = base_pi_path
@@ -39,6 +40,7 @@ class Camera(object):
         # self.exposure_mode = 'off'  # exposure_mode off disables picam.analog_gain & picam.digital_gain, which are not directly settable
 
     def _make_remote_dir(self, today):
+        '''make directory on remote drive based on today's date, i.e. 2016-12-20/'''
         self.remote_dir = os.path.join(self.remote_copy_path, today)
         status = subprocess.call(['ssh', host, 'test -d {}'.format(self.remote_dir)], stdout=subprocess.DEVNULL)
 
@@ -59,10 +61,20 @@ class Camera(object):
             logging.warning('exit status: {}'.format(status))
 
     def _wait_for_5(self):
+        '''
+        wait until minute is divisible by 5 to start taking pics
+        this will make it easier to granularly compile images later,
+        for example get all images taken at 1:30PM
+        '''
         while ((datetime.datetime.now().minute % 5) != 0) and ((datetime.datetime.now().second % 10) != 0):
             time.sleep(1)
 
     def take_pics(self, today):
+        '''
+        take the pics
+        context manager for camera must be kept open all day,
+        otherwise setting white balance manually doesn't work
+        '''
         self._wait_for_5()
         logging.info('start taking pics')
 
@@ -90,11 +102,13 @@ class Camera(object):
         logging.info('done taking pics')
 
     def wait(self):
+        '''sleep until time to take next image 5 minutes from now'''
         next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=5)).replace(second=0, microsecond=0)
         delay = (next_minute - datetime.datetime.now()).total_seconds()
         time.sleep(delay)
 
     def calculate_frames(self, awake_interval):
+        '''calculate # of frames to take over the day based on an image every 5 minutes'''
         self.total_frames_today = int(abs(awake_interval / 300))
         logging.info('{} frames will be shot today over {} hours'.format(camera.total_frames_today, abs(light.awake_interval) / 3600))
 
@@ -104,6 +118,7 @@ class Camera(object):
         logging.info("I'm awake!")
 
     def make_todays_dir(self, today):
+        '''make local directory to hold today's images'''
         self.todays_dir = os.path.join(self.base_pi_path, today)
         if not os.path.isdir(self.todays_dir):
             os.mkdir(self.todays_dir)
@@ -111,8 +126,9 @@ class Camera(object):
 
     def copy_todays_dir(self, today):
         '''
-        to check if file exists on remote use:
-        subprocess.call(['ssh', host, 'test -f {}'.format(shlex.quote(path))])
+        archive images over the network to remote storage
+        copy one at a time to check for success; if one fails,
+        trouble flag is set to True and the local directory is not deleted
         '''
         remote = self._make_remote_dir(today)
 
@@ -142,6 +158,7 @@ class Camera(object):
                 self.copied = True
 
     def delete_todays_dir(self):
+        '''delete today's directory if copying was successfull'''
         if os.path.isdir(self.todays_dir) and self.copied:
             shutil.rmtree(self.todays_dir)
             logging.info("deleted today's directory")
@@ -149,6 +166,7 @@ class Camera(object):
             logging.warning("did not delete today's directory")
 
     def push_log(self):
+        '''push log up to github nightly'''
         git_dir = os.path.join(base_pi_path, '.git')
         work_tree = base_pi_path
 
@@ -159,6 +177,7 @@ class Camera(object):
 
 
 class Light(object):
+    '''use pyephem library to get sun rise and set times and calculate time intervals'''
 
     def __init__(self):
         self.seattle = ephem.Observer()
@@ -199,7 +218,7 @@ if __name__ == '__main__':
 
         camera.take_pics(light.today)
 
-        # TODO: use rsync instead of these methods for file copying and directory deleting?
+        # TODO: use rsync instead of these methods for file copying and directory deleting
         camera.copy_todays_dir(light.today)
         camera.delete_todays_dir()
         camera.push_log()
