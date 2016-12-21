@@ -58,7 +58,14 @@ class Camera(object):
             logging.warning('problem encountered in _make_remote_dir()')
             logging.warning('exit status: {}'.format(status))
 
+    def _wait_for_5(self):
+        while ((datetime.datetime.now().minute % 5) != 0) and ((datetime.datetime.now().second % 10) != 0):
+            time.sleep(1)
+
     def take_pics(self, today):
+        self._wait_for_5()
+        logging.info('start taking pics')
+
         with picamera.PiCamera(resolution=self.pixels, framerate=self.framerate) as picam:
             picam.iso = self.iso
             picam.led = self.led
@@ -79,6 +86,8 @@ class Camera(object):
 
                 counter += 1
                 self.wait()
+
+        logging.info('done taking pics')
 
     def wait(self):
         next_minute = (datetime.datetime.now() + datetime.timedelta(minutes=5)).replace(second=0, microsecond=0)
