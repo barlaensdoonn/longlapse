@@ -66,8 +66,11 @@ class Camera(object):
         this will make it easier to granularly compile images later,
         for example get all images taken at 1:30PM
         '''
-        while ((datetime.datetime.now().minute % 5) != 0) and ((datetime.datetime.now().second % 10) != 0):
-            time.sleep(1)
+        while True:
+            if ((datetime.datetime.now().minute % 5) == 0) and ((datetime.datetime.now().second % 10) == 0):
+                break
+            else:
+                time.sleep(1)
 
     def take_pics(self, today):
         '''
