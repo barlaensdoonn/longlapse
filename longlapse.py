@@ -199,8 +199,8 @@ class Light(object):
         self.today = light.next_rise.strftime("%Y-%m-%d")
 
         logging.info('----------------------- {} -----------------------'.format(self.today))
-        logging.debug('light.next_rise = {}'.format(light.next_rise))
-        logging.debug('light.next_set = {}'.format(light.next_set))
+        logging.info('next sunrise: {}'.format(light.next_rise.time()))
+        logging.info('next sunset: {}'.format(light.next_set.time()))
         logging.debug('light.sleep_interval = {}'.format(light.sleep_interval))
         logging.debug('light.awake_interval = {}'.format(light.awake_interval))
         logging.debug('light.today = {}'.format(light.today))
