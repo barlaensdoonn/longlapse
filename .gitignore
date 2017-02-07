@@ -1,7 +1,5 @@
-__pycache__/
+/__pycache__/
+/misc
 .DS_Store
 .AppleDouble
-notepad.py
-longlapse_alternate.py
 longpaths.py
-awb_gains_test.py
