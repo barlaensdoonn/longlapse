@@ -1484,3 +1484,18 @@ AttributeError: 'Light' object has no attribute 'today'
 2017/02/26 18:48:09 deleted today's directory
 2017/02/26 18:48:09 pushing today's log to github
 
+2017/02/27 03:00:03 ----------------------- 2017-02-27 -----------------------
+2017/02/27 03:00:03 next sunrise: 06:20:29
+2017/02/27 03:00:03 next sunset: 18:24:22
+2017/02/27 03:00:03 made today's directory at /home/pi/gitbucket/longlapse/2017-02-27
+2017/02/27 03:00:03 144 frames will be shot today over 12.064722222222223 hours
+2017/02/27 03:00:03 sleeping til sunrise 3.3403453563888887 hours from now
+2017/02/27 06:20:29 I'm awake!
+2017/02/27 06:20:30 start taking pics
+2017/02/27 18:20:00 done taking pics
+2017/02/27 18:20:02 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-02-27
+2017/02/27 18:20:02 copying today's directory to kestrel
+2017/02/27 18:36:21 finished copying today's directory
+2017/02/27 18:36:21 deleted today's directory
+2017/02/27 18:36:21 pushing today's log to github
+
