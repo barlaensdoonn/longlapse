@@ -169,11 +169,11 @@ class Camera(object):
             logging.warning("did not delete today's directory")
 
     def push_log(self):
-        '''push log up to github nightly'''
+        '''push logs up to github'''
         git_dir = os.path.join(base_pi_path, '.git')
         work_tree = base_pi_path
 
-        logging.info("pushing today's log to github\n")
+        logging.info("pushing logs to github\n")
         subprocess.call(['git', '--git-dir', git_dir, '--work-tree', work_tree, 'add', log_locate])
         subprocess.call(['git', '--git-dir', git_dir, '--work-tree', work_tree, 'commit', '-m' 'update log'])
         subprocess.call(['git', '--git-dir', git_dir, '--work-tree', work_tree, 'push'])
@@ -224,7 +224,10 @@ if __name__ == '__main__':
         # TODO: use rsync instead of these methods for file copying and directory deleting
         camera.copy_todays_dir(light.today)
         camera.delete_todays_dir()
-        camera.push_log()
+
+        if datetime.datetime.today().weekday() == 0:
+            # push the log to github on Mondays
+            camera.push_log()
 
     except Exception as e:
         logging.error(traceback.format_exc())
