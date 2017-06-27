@@ -2963,3 +2963,96 @@ OSError: [Errno 28] No space left on device
 2017/06/19 22:11:38 deleted today's directory
 2017/06/19 22:11:38 pushing logs to github
 
+2017/06/20 03:00:03 ----------------------- 2017-06-20 -----------------------
+2017/06/20 03:00:03 next sunrise: 04:27:46
+2017/06/20 03:00:03 next sunset: 21:54:26
+2017/06/20 03:00:03 made today's directory at /home/pi/gitbucket/longlapse/2017-06-20
+2017/06/20 03:00:03 209 frames will be shot today over 17.444444444444443 hours
+2017/06/20 03:00:03 sleeping til sunrise 1.4617871130555555 hours from now
+2017/06/20 04:27:46 I'm awake!
+2017/06/20 04:30:00 start taking pics
+2017/06/20 21:55:00 done taking pics
+2017/06/20 21:55:01 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-06-20
+2017/06/20 21:55:01 copying today's directory to kestrel
+2017/06/20 22:21:07 finished copying today's directory
+2017/06/20 22:21:07 deleted today's directory
+2017/06/21 03:00:03 ----------------------- 2017-06-21 -----------------------
+2017/06/21 03:00:03 next sunrise: 04:27:58
+2017/06/21 03:00:03 next sunset: 21:54:37
+2017/06/21 03:00:03 made today's directory at /home/pi/gitbucket/longlapse/2017-06-21
+2017/06/21 03:00:03 209 frames will be shot today over 17.444166666666668 hours
+2017/06/21 03:00:03 sleeping til sunrise 1.4650959641666665 hours from now
+2017/06/21 04:27:58 I'm awake!
+2017/06/21 04:30:00 start taking pics
+2017/06/21 21:55:00 done taking pics
+2017/06/21 21:55:01 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-06-21
+2017/06/21 21:55:01 copying today's directory to kestrel
+2017/06/21 22:14:39 finished copying today's directory
+2017/06/21 22:14:39 deleted today's directory
+2017/06/22 03:00:03 ----------------------- 2017-06-22 -----------------------
+2017/06/22 03:00:03 next sunrise: 04:28:14
+2017/06/22 03:00:03 next sunset: 21:54:46
+2017/06/22 03:00:03 made today's directory at /home/pi/gitbucket/longlapse/2017-06-22
+2017/06/22 03:00:03 209 frames will be shot today over 17.442222222222224 hours
+2017/06/22 03:00:03 sleeping til sunrise 1.4694833330555555 hours from now
+2017/06/22 04:28:14 I'm awake!
+2017/06/22 04:30:00 start taking pics
+2017/06/22 21:55:01 done taking pics
+2017/06/22 21:55:02 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-06-22
+2017/06/22 21:55:02 copying today's directory to kestrel
+2017/06/22 22:16:39 finished copying today's directory
+2017/06/22 22:16:39 deleted today's directory
+2017/06/23 03:00:03 ----------------------- 2017-06-23 -----------------------
+2017/06/23 03:00:03 next sunrise: 04:28:32
+2017/06/23 03:00:03 next sunset: 21:54:51
+2017/06/23 03:00:03 made today's directory at /home/pi/gitbucket/longlapse/2017-06-23
+2017/06/23 03:00:03 209 frames will be shot today over 17.43861111111111 hours
+2017/06/23 03:00:03 sleeping til sunrise 1.4745025475000002 hours from now
+2017/06/23 04:28:32 I'm awake!
+2017/06/23 04:30:00 start taking pics
+2017/06/23 21:55:00 done taking pics
+2017/06/23 21:55:02 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-06-23
+2017/06/23 21:55:02 copying today's directory to kestrel
+2017/06/23 22:13:11 finished copying today's directory
+2017/06/23 22:13:12 deleted today's directory
+2017/06/24 03:00:04 ----------------------- 2017-06-24 -----------------------
+2017/06/24 03:00:04 next sunrise: 04:28:54
+2017/06/24 03:00:04 next sunset: 21:54:54
+2017/06/24 03:00:04 made today's directory at /home/pi/gitbucket/longlapse/2017-06-24
+2017/06/24 03:00:04 209 frames will be shot today over 17.433333333333334 hours
+2017/06/24 03:00:04 sleeping til sunrise 1.48047332 hours from now
+2017/06/24 04:28:54 I'm awake!
+2017/06/24 04:30:00 start taking pics
+2017/06/24 21:55:00 done taking pics
+2017/06/24 21:55:02 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-06-24
+2017/06/24 21:55:02 copying today's directory to kestrel
+2017/06/24 22:13:38 finished copying today's directory
+2017/06/24 22:13:38 deleted today's directory
+2017/06/25 03:00:03 ----------------------- 2017-06-25 -----------------------
+2017/06/25 03:00:03 next sunrise: 04:29:18
+2017/06/25 03:00:03 next sunset: 21:54:53
+2017/06/25 03:00:03 made today's directory at /home/pi/gitbucket/longlapse/2017-06-25
+2017/06/25 03:00:03 209 frames will be shot today over 17.426388888888887 hours
+2017/06/25 03:00:03 sleeping til sunrise 1.4872996983333335 hours from now
+2017/06/25 04:29:18 I'm awake!
+2017/06/25 04:30:00 start taking pics
+2017/06/25 21:55:00 done taking pics
+2017/06/25 21:55:04 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-06-25
+2017/06/25 21:55:04 copying today's directory to kestrel
+2017/06/25 22:31:44 finished copying today's directory
+2017/06/25 22:31:44 deleted today's directory
+2017/06/26 03:00:03 ----------------------- 2017-06-26 -----------------------
+2017/06/26 03:00:03 next sunrise: 04:29:45
+2017/06/26 03:00:03 next sunset: 21:54:49
+2017/06/26 03:00:03 made today's directory at /home/pi/gitbucket/longlapse/2017-06-26
+2017/06/26 03:00:03 209 frames will be shot today over 17.41777777777778 hours
+2017/06/26 03:00:03 sleeping til sunrise 1.4948011938888888 hours from now
+2017/06/26 04:29:45 I'm awake!
+2017/06/26 04:30:00 start taking pics
+2017/06/26 21:55:01 done taking pics
+2017/06/26 21:55:04 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-06-26
+2017/06/26 21:55:04 copying today's directory to kestrel
+2017/06/26 22:25:16 finished copying today's directory
+2017/06/26 22:25:17 deleted today's directory
+2017/06/26 22:25:17 pushing logs to github
+
