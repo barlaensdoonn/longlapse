@@ -3056,3 +3056,93 @@ OSError: [Errno 28] No space left on device
 2017/06/26 22:25:17 deleted today's directory
 2017/06/26 22:25:17 pushing logs to github
 
+2017/06/27 03:00:03 ----------------------- 2017-06-27 -----------------------
+2017/06/27 03:00:03 next sunrise: 04:30:15
+2017/06/27 03:00:03 next sunset: 21:54:42
+2017/06/27 03:00:03 made today's directory at /home/pi/gitbucket/longlapse/2017-06-27
+2017/06/27 03:00:03 208 frames will be shot today over 17.4075 hours
+2017/06/27 03:00:03 sleeping til sunrise 1.5031239583333333 hours from now
+2017/06/27 04:30:15 I'm awake!
+2017/06/27 04:30:20 start taking pics
+2017/06/27 21:50:00 done taking pics
+2017/06/27 21:50:03 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-06-27
+2017/06/27 21:50:03 copying today's directory to kestrel
+2017/06/27 22:19:54 trouble copying 2017-06-27_08-35_frame050.jpg
+2017/06/27 22:19:54 did not delete today's directory
+2017/06/28 03:00:04 ----------------------- 2017-06-28 -----------------------
+2017/06/28 03:00:04 next sunrise: 04:30:48
+2017/06/28 03:00:04 next sunset: 21:54:32
+2017/06/28 03:00:04 made today's directory at /home/pi/gitbucket/longlapse/2017-06-28
+2017/06/28 03:00:04 208 frames will be shot today over 17.395555555555557 hours
+2017/06/28 03:00:04 sleeping til sunrise 1.5121637019444445 hours from now
+2017/06/28 04:30:48 I'm awake!
+2017/06/28 04:30:50 start taking pics
+2017/06/28 15:05:05 Traceback (most recent call last):
+  File "/home/pi/gitbucket/longlapse/longlapse.py", line 222, in <module>
+    camera.take_pics(light.today)
+  File "/home/pi/gitbucket/longlapse/longlapse.py", line 99, in take_pics
+    picam.capture(os.path.join(self.base_pi_path, today, '{}_frame{:03d}.jpg'.format(now.strftime("%Y-%m-%d_%H-%M"), counter)))
+  File "/usr/lib/python3/dist-packages/picamera/camera.py", line 1386, in capture
+    if not encoder.wait(self.CAPTURE_TIMEOUT):
+  File "/usr/lib/python3/dist-packages/picamera/encoders.py", line 410, in wait
+    self.stop()
+  File "/usr/lib/python3/dist-packages/picamera/encoders.py", line 441, in stop
+    self._close_output()
+  File "/usr/lib/python3/dist-packages/picamera/encoders.py", line 364, in _close_output
+    output.close()
+OSError: [Errno 28] No space left on device
+
+2017/06/30 03:00:04 ----------------------- 2017-06-30 -----------------------
+2017/06/30 03:00:04 next sunrise: 04:32:01
+2017/06/30 03:00:04 next sunset: 21:54:02
+2017/06/30 03:00:04 made today's directory at /home/pi/gitbucket/longlapse/2017-06-30
+2017/06/30 03:00:04 208 frames will be shot today over 17.366944444444446 hours
+2017/06/30 03:00:04 sleeping til sunrise 1.5323447797222223 hours from now
+2017/06/30 04:32:01 I'm awake!
+2017/06/30 04:35:00 start taking pics
+2017/06/30 21:55:00 done taking pics
+2017/06/30 21:55:01 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-06-30
+2017/06/30 21:55:01 copying today's directory to kestrel
+2017/06/30 22:19:48 finished copying today's directory
+2017/06/30 22:19:48 deleted today's directory
+2017/07/01 03:00:04 ----------------------- 2017-07-01 -----------------------
+2017/07/01 03:00:04 next sunrise: 04:32:42
+2017/07/01 03:00:04 next sunset: 21:53:42
+2017/07/01 03:00:04 made today's directory at /home/pi/gitbucket/longlapse/2017-07-01
+2017/07/01 03:00:04 208 frames will be shot today over 17.35 hours
+2017/07/01 03:00:04 sleeping til sunrise 1.5437803119444444 hours from now
+2017/07/01 04:32:42 I'm awake!
+2017/07/01 04:35:00 start taking pics
+2017/07/01 21:55:00 done taking pics
+2017/07/01 21:55:02 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-07-01
+2017/07/01 21:55:02 copying today's directory to kestrel
+2017/07/01 22:15:39 finished copying today's directory
+2017/07/01 22:15:39 deleted today's directory
+2017/07/02 03:00:04 ----------------------- 2017-07-02 -----------------------
+2017/07/02 03:00:04 next sunrise: 04:33:25
+2017/07/02 03:00:04 next sunset: 21:53:20
+2017/07/02 03:00:04 made today's directory at /home/pi/gitbucket/longlapse/2017-07-02
+2017/07/02 03:00:04 207 frames will be shot today over 17.331944444444446 hours
+2017/07/02 03:00:04 sleeping til sunrise 1.5556976766666668 hours from now
+2017/07/02 04:33:25 I'm awake!
+2017/07/02 04:35:00 start taking pics
+2017/07/02 21:50:00 done taking pics
+2017/07/02 21:50:01 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-07-02
+2017/07/02 21:50:01 copying today's directory to kestrel
+2017/07/02 22:53:03 finished copying today's directory
+2017/07/02 22:53:03 deleted today's directory
+2017/07/03 03:00:03 ----------------------- 2017-07-03 -----------------------
+2017/07/03 03:00:03 next sunrise: 04:34:10
+2017/07/03 03:00:03 next sunset: 21:52:54
+2017/07/03 03:00:03 made today's directory at /home/pi/gitbucket/longlapse/2017-07-03
+2017/07/03 03:00:03 207 frames will be shot today over 17.31222222222222 hours
+2017/07/03 03:00:03 sleeping til sunrise 1.5684367816666667 hours from now
+2017/07/03 04:34:10 I'm awake!
+2017/07/03 04:35:00 start taking pics
+2017/07/03 21:50:00 done taking pics
+2017/07/03 21:50:01 made remote directory at /Volumes/RAGU/longlapse/dayze/2017-07-03
+2017/07/03 21:50:01 copying today's directory to kestrel
+2017/07/03 22:15:00 finished copying today's directory
+2017/07/03 22:15:01 deleted today's directory
+2017/07/03 22:15:01 pushing logs to github
+
