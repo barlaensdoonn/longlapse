@@ -9,11 +9,13 @@ import ephem
 import time
 import datetime
 import os
+import smtplib
 import shutil
 import subprocess
 import logging
 import traceback
 from fractions import Fraction
+import longpaths
 from longpaths import base_remote_path, host, scp_host
 
 base_pi_path = '/home/pi/gitbucket/longlapse'
@@ -119,6 +121,7 @@ class Camera(object):
         logging.info('sleeping til sunrise {} hours from now'.format(light.sleep_interval / 3600))
         time.sleep(sleep_interval)
         logging.info("I'm awake!")
+        self.send_msg("I'm awake!")
 
     def make_todays_dir(self, today):
         '''make local directory to hold today's images'''
@@ -178,6 +181,15 @@ class Camera(object):
         subprocess.call(['git', '--git-dir', git_dir, '--work-tree', work_tree, 'commit', '-m' 'update log'])
         subprocess.call(['git', '--git-dir', git_dir, '--work-tree', work_tree, 'push'])
 
+    def send_msg(self, msg):
+        msg = '\n' + str(msg)
+
+        server = smtplib.SMTP(longpaths.server)
+        server.starttls()
+        server.login(longpaths.usr, longpaths.pw)
+        server.sendmail(longpaths.faddr, longpaths.taddr, msg)
+        server.quit()
+
 
 class Light(object):
     '''use pyephem library to get sun rise and set times and calculate time intervals'''
@@ -221,7 +233,6 @@ if __name__ == '__main__':
 
         camera.take_pics(light.today)
 
-        # TODO: use rsync instead of these methods for file copying and directory deleting
         camera.copy_todays_dir(light.today)
         camera.delete_todays_dir()
 
