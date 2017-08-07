@@ -2,7 +2,7 @@
 
 # timelapse based on sunrise/sunset
 # 11/13/16
-# updated 12/20/16
+# updated 8/7/16
 
 import picamera
 import ephem
@@ -16,7 +16,6 @@ import logging
 import traceback
 from fractions import Fraction
 import longpaths
-from longpaths import base_remote_path, host, scp_host
 
 base_pi_path = '/home/pi/gitbucket/longlapse'
 log_locate = os.path.join(base_pi_path, 'longlapse.log')
@@ -27,8 +26,10 @@ class Camera(object):
 
     def __init__(self):
         self.base_pi_path = base_pi_path
-        self.base_remote_path = base_remote_path
+        self.base_remote_path = longpaths.base_remote_path
         self.remote_copy_path = '/Volumes/RAGU/longlapse/dayze'
+        self.host = longpaths.host
+        self.scp_host = longpaths.scp_host
         self.copied = False
         self.pixels = (2592, 1944)
         self.framerate = 1
@@ -44,13 +45,13 @@ class Camera(object):
     def _make_remote_dir(self, today):
         '''make directory on remote drive based on today's date, i.e. 2016-12-20/'''
         self.remote_dir = os.path.join(self.remote_copy_path, today)
-        status = subprocess.call(['ssh', host, 'test -d {}'.format(self.remote_dir)], stdout=subprocess.DEVNULL)
+        status = subprocess.call(['ssh', self.host, 'test -d {}'.format(self.remote_dir)], stdout=subprocess.DEVNULL)
 
         if status == 0:
             logging.info('remote directory already exists at {}'.format(self.remote_dir))
             return True
         elif status == 1:
-            remote = subprocess.call(['ssh', host, 'mkdir {}'.format(self.remote_dir)])
+            remote = subprocess.call(['ssh', self.host, 'mkdir {}'.format(self.remote_dir)])
             if remote == 0:
                 logging.info('made remote directory at {}'.format(self.remote_dir))
                 return True
@@ -141,7 +142,7 @@ class Camera(object):
         if remote:
             logging.info("copying today's directory to kestrel")
             # remove leading '/' so that os.path.join() will work
-            remote_pic_path = os.path.join(scp_host, self.remote_dir[1:])
+            remote_pic_path = os.path.join(self.scp_host, self.remote_dir[1:])
             status_dict = {}
             trouble = False
             pic_list = [pic for pic in os.listdir(self.todays_dir) if not pic.startswith('.')]
