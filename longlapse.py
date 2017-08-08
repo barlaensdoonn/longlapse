@@ -185,7 +185,7 @@ class Camera(object):
     def send_msg(self, msg):
         msg = '\n' + str(msg)
 
-        server = smtplib.SMTP(longpaths.server)
+        server = smtplib.SMTP(longpaths.srvr)
         server.starttls()
         server.login(longpaths.usr, longpaths.pw)
         server.sendmail(longpaths.faddr, longpaths.taddr, msg)
