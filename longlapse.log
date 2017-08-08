@@ -3643,3 +3643,19 @@ OSError: [Errno 28] No space left on device
 2017/08/07 22:14:37 deleted today's directory
 2017/08/07 22:14:37 pushing logs to github
 
+2017/08/08 04:00:05 ----------------------- 2017-08-08 -----------------------
+2017/08/08 04:00:05 next sunrise: 05:19:13
+2017/08/08 04:00:05 next sunset: 21:09:40
+2017/08/08 04:00:05 made today's directory at /home/pi/gitbucket/longlapse/2017-08-08
+2017/08/08 04:00:05 190 frames will be shot today over 15.840833333333334 hours
+2017/08/08 04:00:05 sleeping til sunrise 1.3188521874999999 hours from now
+2017/08/08 05:19:13 I'm awake!
+2017/08/08 05:19:13 Traceback (most recent call last):
+  File "/home/pi/gitbucket/longlapse/longlapse.py", line 233, in <module>
+    camera.sleep_til_sunrise(light.sleep_interval)
+  File "/home/pi/gitbucket/longlapse/longlapse.py", line 125, in sleep_til_sunrise
+    self.send_msg("I'm awake!")
+  File "/home/pi/gitbucket/longlapse/longlapse.py", line 188, in send_msg
+    server = smtplib.SMTP(longpaths.server)
+AttributeError: 'module' object has no attribute 'server'
+
