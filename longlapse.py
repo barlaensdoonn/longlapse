@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-
 # timelapse based on sunrise/sunset
 # 11/13/16
-# updated 8/7/16
+# updated 8/30/17
 
 import picamera
 import ephem
@@ -122,7 +121,6 @@ class Camera(object):
         logging.info('sleeping til sunrise {} hours from now'.format(light.sleep_interval / 3600))
         time.sleep(sleep_interval)
         logging.info("I'm awake!")
-        self.send_msg("I'm awake!")
 
     def make_todays_dir(self, today):
         '''make local directory to hold today's images'''
@@ -163,6 +161,8 @@ class Camera(object):
             if not trouble:
                 logging.info("finished copying today's directory")
                 self.copied = True
+            else:
+                self.send_msg("I had trouble copying images today =[")
 
     def delete_todays_dir(self):
         '''delete today's directory if copying was successfull'''
